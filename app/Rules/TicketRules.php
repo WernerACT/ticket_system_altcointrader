@@ -7,7 +7,7 @@ class TicketRules
     public static function defaultRules(): array
     {
         return [
-            'email' => ['required', 'email', 'max:255'],
+            'email' => ['required', 'email', 'max:100'],
             'title' => ['sometimes', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'department_id' => ['required', 'integer', 'exists:departments,id'],
