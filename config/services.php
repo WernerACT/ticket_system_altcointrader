@@ -31,4 +31,8 @@ return [
         ],
     ],
 
+    'admin' => [
+        'email' => env('ADMIN_EMAIL', 'frik@altcointrader.co.za'),
+    ],
+
 ];
