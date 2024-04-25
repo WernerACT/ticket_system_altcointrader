@@ -42,7 +42,7 @@ class TicketCreatedNotification extends Notification
         $actTicketId = $ticket->reference;
 
         return (new MailMessage)
-            ->subject($actTicketId . ' Ticket Logged from AltCoinTrader Support.')
+            ->subject(' Ticket Logged from AltCoinTrader Support. | Reference Number: ' . $actTicketId )
             ->view('emails.ticket_created', ['ticket' => $ticket, 'actTicketId' => $actTicketId]);
     }
 

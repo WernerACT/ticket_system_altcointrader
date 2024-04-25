@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCannedResponseRequest;
+use App\Http\Requests\CannedResponse\StoreCannedResponseRequest;
 use App\Http\Resources\CannedResponseResource;
 use App\Models\CannedResponse;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;

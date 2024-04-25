@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\CannedResponse;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreResponseRequest extends FormRequest
+class StoreCannedResponseRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
+            'name' => ['required'],
+            'keywords' => ['required'],
             'body' => ['required'],
         ];
     }

@@ -11,16 +11,21 @@ class TicketResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
             'id' => $this->id,
             'email' => $this->email,
             'reference' => $this->reference,
             'description' => $this->description,
-            'opened_at' => $this->opened_at,
+            'tickets' => TicketResource::collection($this->whenLoaded('tickets')),
+            'opened_at' => $this->opened_at ? $this->opened_at->diffForHumans() : null,
+            'updated_at' => $this->updated_at->diffForHumans(),
+            'created_at' => $this->created_at->diffForHumans(),
 
             'department' => new DepartmentResource($this->whenLoaded('department')),
             'status' => new StatusResource($this->whenLoaded('status')),
+            'user' => new UserResource($this->whenLoaded('user')),
+            'responses' => ResponseResource::collection($this->whenLoaded('responses')),
+            'images'=> ImageResource::collection($this->whenLoaded('images')),
+            'documents'=> DocumentResource::collection($this->whenLoaded('documents')),
         ];
     }
 }

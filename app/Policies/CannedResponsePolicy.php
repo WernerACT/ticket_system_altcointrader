@@ -12,30 +12,36 @@ class CannedResponsePolicy
 
     public function viewAny(User $user): bool
     {
-
+        return true;
     }
 
     public function view(User $user, CannedResponse $cannedResponse): bool
     {
+        return true;
     }
 
     public function create(User $user): bool
     {
+        return true;
     }
 
     public function update(User $user, CannedResponse $cannedResponse): bool
     {
+        return true;
     }
 
     public function delete(User $user, CannedResponse $cannedResponse): bool
     {
+        return true;
     }
 
     public function restore(User $user, CannedResponse $cannedResponse): bool
     {
+        return true;
     }
 
     public function forceDelete(User $user, CannedResponse $cannedResponse): bool
     {
+        return true;
     }
 }

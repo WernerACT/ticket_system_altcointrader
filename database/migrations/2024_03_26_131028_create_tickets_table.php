@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->string('title');
             $table->string('email');
-            $table->string('reference');
+            $table->string('reference')->nullable();
             $table->longText('description');
             $table->timestamp('opened_at')->nullable();
             $table->foreignId('department_id')->default(1);

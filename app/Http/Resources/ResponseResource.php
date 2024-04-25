@@ -10,13 +10,16 @@ class ResponseResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
+        $userLoaded = $this->whenLoaded('user');
+        $isUserResponse = $this->user_id !== null;
+
         return [
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
             'id' => $this->id,
             'body' => $this->body,
-
-            'from' => new UserResource($this->whenLoaded('from')),
+            'created_at' => $this->created_at->diffForHumans(),
+            'from' => $isUserResponse ? $this->user->name : $this->ticket->email, // Default to ticket email if no user
+            'position' => $isUserResponse ? 'right' : 'left', // Position based on response origin
+            'user' => new UserResource($userLoaded),
             'ticket' => new TicketResource($this->whenLoaded('ticket')),
         ];
     }

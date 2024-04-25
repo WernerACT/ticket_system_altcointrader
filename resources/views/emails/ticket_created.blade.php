@@ -48,10 +48,10 @@
                                                 <!-- MESSAGE -->
                                                 <tr>
                                                     <td bgcolor="#ffffff" align="left" style="padding: 10px 40px 10px 40px; font-family: Helvetica, Arial, sans-serif; font-size: 14px; letter-spacing: .5px; font-weight: 100; color: #999999; line-height: 28px;" class="padding-copy">
-                                                        Your ticket with ID: {{$ticket->ticket_reference}} has been created.
+                                                        Your ticket with  Reference ID: <strong> {{$ticket->reference}}  </strong>has been created.
                                                         <br>
                                                         <br>
-                                                        Description: {{$ticket->description}}
+                                                        Description: {{strip_tags($ticket->description)}}
                                                         <br>
                                                         <br>
                                                         Status: In Progress

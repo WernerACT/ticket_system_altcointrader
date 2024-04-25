@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreDepartmentRequest;
-use App\Http\Resources\DepartmentResource;
+use App\Http\Requests\Department\StoreDepartmentRequest;
 use App\Models\Department;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 

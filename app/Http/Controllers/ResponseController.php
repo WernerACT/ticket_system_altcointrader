@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreResponseRequest;
+use App\Http\Requests\Response\StoreResponseRequest;
 use App\Http\Resources\ResponseResource;
 use App\Models\Response;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;

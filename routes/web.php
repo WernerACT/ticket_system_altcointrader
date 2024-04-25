@@ -21,7 +21,7 @@ Route::middleware([
 
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
-//    Route::resource('canned_responses', CannedResponseController::class);
+//    Route::resource('canned_responses', UserController::class);
     Route::resource('departments', DepartmentController::class);
 //    Route::resource('documents', DocumentController::class);
 //    Route::resource('flags', FlagController::class);

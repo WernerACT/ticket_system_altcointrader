@@ -12,14 +12,16 @@ class Response extends Model
 
     protected $fillable = [
         'body',
+        'user_id',
+        'ticket_id'
     ];
 
-    protected function user(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    protected function ticket(): BelongsTo
+    public function ticket(): BelongsTo
     {
         return $this->belongsTo(Ticket::class);
     }

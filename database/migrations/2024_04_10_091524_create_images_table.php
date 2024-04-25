@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('path');
             $table->morphs('imageable');
+            $table->foreignId('image_type_id')->nullable();
+            $table->boolean('is_valid')->default(false);
+            $table->boolean('should_delete')->default(false);
             $table->timestamps();
         });
     }

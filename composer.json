@@ -6,14 +6,15 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "ext-fileinfo": "*",
         "laravel/framework": "^11.0",
         "laravel/jetstream": "^5.0",
         "laravel/sanctum": "^4.0",
         "laravel/telescope": "^5.0",
         "laravel/tinker": "^2.9",
+        "laravel/vapor-core": "^2.37",
         "livewire/livewire": "^3.0",
-        "webklex/laravel-imap": "^5.1",
-      "ext-fileinfo": "*"
+        "webklex/laravel-imap": "^5.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.12",

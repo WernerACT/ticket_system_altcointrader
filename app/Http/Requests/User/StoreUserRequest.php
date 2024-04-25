@@ -1,31 +1,16 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UpdateUserRequest extends FormRequest
+class StoreUserRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        return true;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
             'name' => ['required'],
-            'email' => ['required', 'email', 'max:254', Rule::unique('users', 'email')->ignore($this->user->id)],
+            'email' => ['required', 'email', 'max:254', 'unique:users,email'],
             'user_reference' => ['nullable'],
             'site_access_key' => ['nullable'],
             'active' => ['nullable'],
@@ -40,5 +25,10 @@ class UpdateUserRequest extends FormRequest
             'two_factor_recovery_codes' => ['nullable'],
             'two_factor_confirmed_at' => ['nullable', 'date'],
         ];
+    }
+
+    public function authorize(): bool
+    {
+        return true;
     }
 }

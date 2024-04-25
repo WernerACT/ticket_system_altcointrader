@@ -24,11 +24,12 @@ class DatabaseSeeder extends Seeder
             AgentUserSeeder::class,
         ]);
 
-        $user = User::create([
+        User::create([
             'name' => 'Werner Wessels',
             'email' => 'werner.w@altcointrader.co.za',
             'password' => Hash::make('password'),
             'role_id' => 1,
+            'department_id' => 1,
         ]);
     }
 }

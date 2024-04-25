@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreStatusRequest;
+use App\Http\Requests\Status\StoreStatusRequest;
 use App\Models\Status;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 

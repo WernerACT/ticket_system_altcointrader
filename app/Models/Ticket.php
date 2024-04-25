@@ -53,10 +53,7 @@ class Ticket extends Model
         return $this->hasMany(Response::class);
     }
 
-    protected function casts()
-    {
-        return [
-            'opened_at' => 'timestamp',
-        ];
-    }
+    protected $casts = [
+        'opened_at' => 'datetime'
+    ];
 }

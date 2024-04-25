@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Image;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCannedResponseRequest extends FormRequest
+class StoreImageRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
             'name' => ['required'],
-            'keywords' => ['required'],
-            'body' => ['required'],
+            'path' => ['required'],
+            'imageable_id' => ['required', 'integer'],
+            'imageable_type' => ['required'],
         ];
     }
 

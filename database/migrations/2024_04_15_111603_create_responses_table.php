@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('responses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->nullable();
             $table->foreignId('ticket_id');
             $table->longText('body');
             $table->timestamps();
