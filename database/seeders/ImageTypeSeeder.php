@@ -14,9 +14,11 @@ class ImageTypeSeeder extends Seeder
     public function run(): void
     {
         $imageTypes = [
-            ['name' => 'Selfie'],
+            ['name' => 'Unknown'],
             ['name' => 'ID Copy'],
             ['name' => 'Passport Copy'],
+            ['name' => 'Selfie'],
+            ['name' => '2FA Removal Request'],
             ['name' => 'Spam'],
         ];
 

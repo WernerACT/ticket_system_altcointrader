@@ -8,6 +8,7 @@ use App\Http\Resources\ResponseResource;
 use App\Http\Resources\TicketResource;
 use App\Models\Response;
 use App\Models\Ticket;
+use App\Services\TicketHistoryService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,6 +38,11 @@ class ResponseController extends Controller
             'body' => $request->body,
         ]);
         $response->save();
+
+        $comment = "A new response was sent by " . Auth::user()->name;
+
+        app(TicketHistoryService::class)
+            ->recordHistory($ticket->id, $comment);
 
         $ticket ->load('status', 'department', 'user', 'responses', 'images', 'documents');
 

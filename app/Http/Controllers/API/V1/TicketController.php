@@ -19,7 +19,7 @@ class TicketController extends Controller
     {
         $this->authorize('viewAny', Ticket::class);
 
-        $query = Ticket::with(['user', 'status', 'department', 'images', 'documents', 'responses']);
+        $query = Ticket::with(['user', 'status', 'department']);
 
         if ($request->filled('start_date')) {
             $query->where('created_at', '>=', $request->start_date);
@@ -42,9 +42,12 @@ class TicketController extends Controller
 
         $tickets = $query->paginate(10);
 
+        $ticketIds = $tickets->getCollection()->pluck('id')->all();
+
         return [
             'success' => true,
             'tickets' => new TicketResourceCollection($tickets),
+            'ticket_ids' => $ticketIds,
             ];
     }
 

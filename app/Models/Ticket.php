@@ -53,6 +53,11 @@ class Ticket extends Model
         return $this->hasMany(Response::class);
     }
 
+    public function ticketHistories()
+    {
+        return $this->hasMany(TicketHistory::class);
+    }
+
     protected $casts = [
         'opened_at' => 'datetime'
     ];

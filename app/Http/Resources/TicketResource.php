@@ -24,8 +24,6 @@ class TicketResource extends JsonResource
             'status' => new StatusResource($this->whenLoaded('status')),
             'user' => new UserResource($this->whenLoaded('user')),
             'responses' => ResponseResource::collection($this->whenLoaded('responses')),
-            'images'=> ImageResource::collection($this->whenLoaded('images')),
-            'documents'=> DocumentResource::collection($this->whenLoaded('documents')),
         ];
     }
 }

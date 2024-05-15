@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
             SuperAdminUserSeeder::class,
             AdminUserSeeder::class,
             AgentUserSeeder::class,
+            ImageTypeSeeder::class,
+            DocumentTypeSeeder::class,
         ]);
 
         User::create([

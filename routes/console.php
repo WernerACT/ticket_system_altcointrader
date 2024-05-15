@@ -3,4 +3,4 @@
 use Illuminate\Support\Facades\Schedule;
 
 
-Schedule::command('import:email' )->everyThirtySeconds();
+Schedule::command('import:email' )->everyFiveMinutes();

@@ -13,6 +13,11 @@ class TicketService
         $ticket->reference = $this->generateReference($ticket->id);
         $ticket->save();
 
+        $comment = "Ticket created";
+
+        $ticketHistoryService = app(TicketHistoryService::class);
+        $ticketHistoryService->recordHistory($ticket->id, $comment);
+
         return $ticket;
     }
 

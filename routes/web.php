@@ -29,7 +29,7 @@ Route::middleware([
 //    Route::resource('notes', NoteController::class);
 //    Route::resource('permissions', PermissionController::class);
     Route::resource('statuses', StatusController::class);
-    Route::resource('tickets', TicketController::class);
+//    Route::resource('tickets', TicketController::class);
 
     Route::name('technical')->get('/system', function () {
         return redirect(route('system'));

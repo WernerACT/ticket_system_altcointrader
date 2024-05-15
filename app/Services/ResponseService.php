@@ -18,6 +18,11 @@ class ResponseService
 
         $response->save();
 
+        $comment = "The client sent a response";
+
+        app(TicketHistoryService::class)
+            ->recordHistory($ticket->id, $comment);
+
         return $response;
 
     }
