@@ -1,11 +1,11 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
-import mkcert from "vite-plugin-mkcert/plugin/mkcert/index.js";
+import mkcert from'vite-plugin-mkcert'
 
 export default defineConfig({
     server: { https: true },
     plugins: [
-        mkcert,
+        mkcert(),
         laravel({
 
             input: [
