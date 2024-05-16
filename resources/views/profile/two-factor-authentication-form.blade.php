@@ -76,7 +76,7 @@
             @endif
         @endif
 
-        <div class="mt-5">
+        <div class="mt-5 py-3">
             @if (! $this->enabled)
                 <x-confirms-password wire:then="enableTwoFactorAuthentication">
                     <x-button type="button" wire:loading.attr="disabled">

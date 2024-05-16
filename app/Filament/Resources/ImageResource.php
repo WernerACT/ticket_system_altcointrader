@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ImageResource extends Resource
 {
-    protected static ?string $navigationGroup = 'Tickets';
+    protected static ?int $navigationSort = 3;
 
     protected static ?string $model = Image::class;
 

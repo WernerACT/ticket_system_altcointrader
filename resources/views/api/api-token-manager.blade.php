@@ -26,7 +26,7 @@
                         @foreach (Laravel\Jetstream\Jetstream::$permissions as $permission)
                             <label class="flex items-center">
                                 <x-checkbox wire:model="createApiTokenForm.permissions" :value="$permission"/>
-                                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ $permission }}</span>
+                                <span class="ms-2 ml-2 px-3 text-sm text-gray-600 dark:text-gray-400">{{ $permission }}</span>
                             </label>
                         @endforeach
                     </div>
@@ -76,7 +76,7 @@
                                     @endif
 
                                     @if (Laravel\Jetstream\Jetstream::hasPermissions())
-                                        <button class="cursor-pointer ms-6 text-sm text-gray-400 underline" wire:click="manageApiTokenPermissions({{ $token->id }})">
+                                        <button class="cursor-pointer ms-6 px-4 text-sm text-gray-400 underline" wire:click="manageApiTokenPermissions({{ $token->id }})">
                                             {{ __('Permissions') }}
                                         </button>
                                     @endif

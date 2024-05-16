@@ -18,19 +18,11 @@ Route::middleware([
     Route::get('/', function () {
         return view('dashboard');
     })->name('dashboard');
-
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
-//    Route::resource('canned_responses', UserController::class);
     Route::resource('departments', DepartmentController::class);
-//    Route::resource('documents', DocumentController::class);
-//    Route::resource('flags', FlagController::class);
-      Route::resource('images', ImageController::class);
-//    Route::resource('notes', NoteController::class);
-//    Route::resource('permissions', PermissionController::class);
+    Route::resource('images', ImageController::class);
     Route::resource('statuses', StatusController::class);
-//    Route::resource('tickets', TicketController::class);
-
     Route::name('technical')->get('/system', function () {
         return redirect(route('system'));
     });

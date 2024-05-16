@@ -5,6 +5,7 @@ namespace App\Providers\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\MenuItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -38,6 +39,20 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
 
+            ])
+            ->userMenuItems([
+                MenuItem::make()
+                    ->label('Profile')
+                    ->url('profile')
+                    ->icon('heroicon-o-user-circle'),
+                MenuItem::make()
+                    ->label('API Tokens')
+                    ->url('api-tokens')
+                    ->icon('heroicon-o-arrows-pointing-in'),
+                MenuItem::make()
+                    ->label('System Health')
+                    ->url('/system')
+                    ->icon('heroicon-o-information-circle'),
             ])
             ->middleware([
                 EncryptCookies::class,

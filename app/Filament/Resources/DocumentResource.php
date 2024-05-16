@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class DocumentResource extends Resource
 {
-    protected static ?string $navigationGroup = 'Tickets';
+    protected static ?int $navigationSort = 4;
 
     protected static ?string $model = Document::class;
 

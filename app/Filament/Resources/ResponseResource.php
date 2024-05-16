@@ -16,7 +16,7 @@ use function Laravel\Prompts\text;
 
 class ResponseResource extends Resource
 {
-    protected static ?string $navigationGroup = 'Tickets';
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $model = Response::class;
 
