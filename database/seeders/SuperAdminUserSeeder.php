@@ -20,7 +20,7 @@ class SuperAdminUserSeeder extends Seeder
         $superAdmins = [
             [
                 'name'              => 'Frik',
-                'email'             => 'frik@altcointrader.co.za',
+                'email'             => 'frik.maartens@gmail.com',
                 'user_reference'    => 1946583,
                 'department_id'     => 7
             ],
@@ -40,7 +40,7 @@ class SuperAdminUserSeeder extends Seeder
                 'department_id' => $superAdmin['department_id'],
                 'site_access_key' => Str::random(12),
                 'role_id' => 1,
-                'password' => bcrypt(Str::random(8)),
+                'password' => bcrypt('cgmKAi82tjBQ'),
             ]);
         }
     }

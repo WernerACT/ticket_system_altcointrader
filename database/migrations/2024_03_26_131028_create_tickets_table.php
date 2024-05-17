@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->timestamp('opened_at')->nullable();
             $table->foreignId('department_id')->default(1);
             $table->foreignId('status_id')->default(1);
+            $table->foreignId('category_id')->nullable();
             $table->foreignId('user_id');
             $table->timestamps();
         });
