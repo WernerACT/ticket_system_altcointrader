@@ -55,6 +55,7 @@ class DocumentResource extends Resource
                     ->relationship('documentType', 'name'),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

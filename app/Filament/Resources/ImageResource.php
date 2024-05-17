@@ -8,9 +8,11 @@ use App\Models\Image;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\View;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ViewColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
@@ -30,9 +32,8 @@ class ImageResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name'),
-                Forms\Components\FileUpload::make('path')->disk('private'),
-                Select::make('imageType')
-                    ->relationship('imageType', 'name'),
+                Forms\Components\FileUpload::make('path')
+                    ->view('filament.components.image'),
             ]);
     }
 
@@ -41,6 +42,7 @@ class ImageResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')->searchable()->sortable(),
+                ViewColumn::make('path')->view('filament.tables.columns.thumbnail'),
                 Tables\Columns\TextColumn::make('imageType.name')->label('Type')->searchable()->sortable(),
                 Tables\Columns\CheckboxColumn::make('is_valid')->label('Is Valid'),
                 Tables\Columns\CheckboxColumn::make('should_delete')->label('Should Delete'),
@@ -75,6 +77,7 @@ class ImageResource extends Resource
             'index' => Pages\ListImages::route('/'),
             'create' => Pages\CreateImage::route('/create'),
             'edit' => Pages\EditImage::route('/{record}/edit'),
+            'view' => Pages\ViewImage::route('/{record}/show'),
         ];
     }
 }

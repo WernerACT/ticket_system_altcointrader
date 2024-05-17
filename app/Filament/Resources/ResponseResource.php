@@ -26,7 +26,10 @@ class ResponseResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Select::make('ticket_id')->relationship('ticket', 'reference'),
+                Forms\Components\Select::make('user_id')->relationship('user', 'name'),
+                Forms\Components\Textarea::make('body')->autosize(),
+                Forms\Components\DateTimePicker::make('created_at'),
             ]);
     }
 
@@ -37,17 +40,19 @@ class ResponseResource extends Resource
                 Tables\Columns\TextColumn::make('ticket.reference')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('body')->sortable()->limit(50)->searchable(),
                 Tables\Columns\TextColumn::make('created_at')->sortable()->dateTime()->searchable(),
+                Tables\Columns\TextColumn::make('created_at')->sortable()->dateTime()->searchable(),
+                Tables\Columns\TextColumn::make('user.name')->searchable()->sortable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+//                Tables\Actions\BulkActionGroup::make([
+//                    Tables\Actions\DeleteBulkAction::make(),
+//                ]),
             ]);
     }
 

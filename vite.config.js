@@ -3,7 +3,12 @@ import laravel from 'laravel-vite-plugin';
 import mkcert from'vite-plugin-mkcert'
 
 export default defineConfig({
-    server: { https: true },
+    server: {
+        watch: {
+            usePolling: true
+        },
+        https: true },
+
     plugins: [
         mkcert(),
         laravel({
@@ -12,7 +17,10 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
             ],
-            refresh: true,
+            refresh: [
+                'app/Livewire/**',
+            ]
+
         }),
     ],
 });

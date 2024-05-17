@@ -16,14 +16,6 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    Route::resource('users', UserController::class);
-    Route::resource('roles', RoleController::class);
-    Route::resource('departments', DepartmentController::class);
-    Route::resource('images', ImageController::class);
-    Route::resource('statuses', StatusController::class);
-    Route::name('technical')->get('/system', function () {
-        return redirect(route('system'));
+        return redirect('admin');
     });
 });

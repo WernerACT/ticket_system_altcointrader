@@ -42,7 +42,7 @@ class TicketResource extends Resource
                     ->required(),
                 TextInput::make('reference'),
                 Textarea::make('description')
-                    ->required(),
+                    ->required()->autosize(),
                 DateTimePicker::make('opened_at'),
                 Select::make('department_id')
                     ->relationship('department', 'name'),
@@ -74,7 +74,6 @@ class TicketResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
