@@ -4,10 +4,12 @@ use App\Http\Controllers\API\V1\CannedResponsesController;
 use App\Http\Controllers\API\V1\DepartmentController;
 use App\Http\Controllers\API\V1\DocumentController;
 use App\Http\Controllers\API\V1\ImageController;
+use App\Http\Controllers\API\V1\Invokable\ActivateAgentController;
 use App\Http\Controllers\API\V1\Invokable\AgentsWithDepartmentsController;
 use App\Http\Controllers\API\V1\Invokable\AssignAgentController;
 use App\Http\Controllers\API\V1\Invokable\AssignDepartmentController;
 use App\Http\Controllers\API\V1\Invokable\AssignStatusController;
+use App\Http\Controllers\API\V1\Invokable\DeactivateAgentController;
 use App\Http\Controllers\API\V1\Invokable\TicketDepartmentController;
 use App\Http\Controllers\API\V1\Invokable\TicketDetailController;
 use App\Http\Controllers\API\V1\Invokable\TicketHistoryController;
@@ -27,6 +29,8 @@ Route::prefix('/v1')
     ->middleware('auth:sanctum')
     ->group(function (){
     Route::get('/setup/tickets', TicketSetupController::class);
+    Route::post('/agent/activate/{user}', ActivateAgentController::class);
+    Route::post('/agent/deactivate/{user}', DeactivateAgentController::class);
     Route::get('/setup/tickets/details/{ticket}', TicketDetailController::class);
     Route::get('/ticket/history/{ticket}', TicketHistoryController::class);
     Route::post('/ticket/response', TicketResponseController::class);

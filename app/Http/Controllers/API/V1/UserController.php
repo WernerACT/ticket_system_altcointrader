@@ -7,16 +7,18 @@ use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Laravel\Sanctum\HasApiTokens;
 
 class UserController extends Controller
 {
-    use AuthorizesRequests;
+    use AuthorizesRequests, HasApiTokens;
 
     public function index()
     {
         $this->authorize('viewAny', User::class);
 
-        return UserResource::collection(User::with('role')->with('department')->with('tickets')->get());
+        return UserResource::collection(User::with('role')->with('department')->with('tickets')->withCount('tokens')->get());
     }
 
     public function store(StoreUserRequest $request)
