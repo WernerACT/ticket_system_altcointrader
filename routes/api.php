@@ -24,6 +24,7 @@ use App\Http\Controllers\API\V1\TicketController;
 use App\Http\Controllers\API\V1\UserController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/v1/guest/departments', [DepartmentController::class,'index']);
 
 Route::prefix('/v1')
     ->middleware('auth:sanctum')

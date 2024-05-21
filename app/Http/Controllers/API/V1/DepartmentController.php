@@ -14,9 +14,11 @@ class DepartmentController extends Controller
 
     public function index()
     {
-        $this->authorize('viewAny', Department::class);
-
-        return DepartmentResource::collection(Department::all());
+        $departments = Department::all()->whereNotIn('name', ['ExCo']);
+        return response()->json([
+            'success' => true,
+            'departments' => DepartmentResource::collection($departments)
+        ]);
     }
 
     public function store(StoreDepartmentRequest $request)

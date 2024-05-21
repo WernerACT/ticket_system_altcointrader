@@ -29,11 +29,9 @@ class AgentsWithDepartmentsController extends Controller
             return [$agent->department->name !== $ticketDepartmentName, $agent->department->name];
         });
 
-
         return response()->json([
             'success' => true,
             'agents' => UserResource::collection($sortedAgents)
-    ]);
-
+        ]);
     }
 }
