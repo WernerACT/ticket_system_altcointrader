@@ -17,4 +17,9 @@ class Category extends Model
     {
         return $this->hasMany(Ticket::class);
     }
+
+    public function department(): BelongsTo
+    {
+        return $this->belongsTo(Department::class);
+    }
 }

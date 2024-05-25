@@ -20,6 +20,8 @@ class DocumentResource extends Resource
 {
     protected static ?int $navigationSort = 4;
 
+    protected static ?string $recordTitleAttribute = 'name';
+
     protected static ?string $model = Document::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';

@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->foreignId('department_id');
-            $table->json('keywords');
+            $table->json('keywords')->nullable();
             $table->longText('body');
             $table->timestamps();
         });

@@ -18,6 +18,8 @@ class ResponseResource extends Resource
 {
     protected static ?int $navigationSort = 2;
 
+    protected static ?string $recordTitleAttribute = 'body';
+
     protected static ?string $model = Response::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';

@@ -55,12 +55,6 @@ class AgentUserSeeder extends Seeder
                 'department_id'     => 1
             ],
             [
-                'name'              => 'Pieter',
-                'email'             => 'pieter@altcointrader.co.za',
-                'user_reference'    => 292087349,
-                'department_id'     => 4
-            ],
-            [
                 'name'              => 'Monique',
                 'email'             => 'monique@altcointrader.co.za',
                 'user_reference'    => 261017145,

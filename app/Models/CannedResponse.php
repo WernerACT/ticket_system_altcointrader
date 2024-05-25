@@ -12,11 +12,12 @@ class CannedResponse extends Model
 
     protected $fillable = [
         'name',
+        'department_id',
         'keywords',
         'body',
     ];
 
-    protected function department(): BelongsTo
+    public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class);
     }

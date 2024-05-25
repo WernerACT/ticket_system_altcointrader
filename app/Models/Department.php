@@ -29,4 +29,8 @@ class Department extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function cannedResponses(){
+        return $this->hasMany(CannedResponse::class);
+    }
 }

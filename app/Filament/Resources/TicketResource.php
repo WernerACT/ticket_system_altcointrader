@@ -64,6 +64,7 @@ class TicketResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')->dateTime()->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('department.name')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('status.name')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('category.name')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('user.name')->searchable()->sortable(),
             ])
             ->filters([
@@ -71,6 +72,8 @@ class TicketResource extends Resource
                     ->relationship('status', 'name'),
                 SelectFilter::make('department')
                     ->relationship('department', 'name'),
+                SelectFilter::make('category')
+                    ->relationship('category', 'name'),
                 SelectFilter::make('user')
                     ->relationship('user', 'name')
             ])

@@ -41,6 +41,12 @@ class AdminUserSeeder extends Seeder
                 'user_reference'    => 271119877,
                 'department_id'     => 7
             ],
+            [
+                'name'              => 'Pieter',
+                'email'             => 'pieter@altcointrader.co.za',
+                'user_reference'    => 292087349,
+                'department_id'     => 4
+            ],
         ];
 
         foreach ($adminUsers as $adminUser) {

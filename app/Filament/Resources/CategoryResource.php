@@ -14,6 +14,7 @@ use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\DeleteBulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -24,6 +25,7 @@ class CategoryResource extends Resource
 
     protected static ?string $model = Category::class;
 
+    protected static ?string $recordTitleAttribute = 'name';
     protected static ?string $slug = 'categories';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
@@ -34,6 +36,8 @@ class CategoryResource extends Resource
             ->schema([
                 TextInput::make('name')
                     ->required(),
+                Select::make('department_id')
+                    ->relationship('department', 'name'),
             ]);
     }
 
@@ -44,13 +48,11 @@ class CategoryResource extends Resource
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
-
-                TextColumn::make('ticket.reference')
-                    ->searchable()
-                    ->sortable(),
+                TextColumn::make('department.name')->searchable()->sortable(),
             ])
             ->filters([
-                //
+                SelectFilter::make('department')
+                    ->relationship('department', 'name'),
             ])
             ->actions([
                 EditAction::make(),

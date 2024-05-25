@@ -23,6 +23,8 @@ class ImageResource extends Resource
 {
     protected static ?int $navigationSort = 3;
 
+    protected static ?string $recordTitleAttribute = 'name';
+
     protected static ?string $model = Image::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
