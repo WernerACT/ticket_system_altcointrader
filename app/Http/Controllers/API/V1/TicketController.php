@@ -19,6 +19,7 @@ class TicketController extends Controller
     {
         $this->authorize('viewAny', Ticket::class);
 
+
         $query = Ticket::with(['user', 'status', 'department']);
 
         if ($request->filled('start_date')) {
