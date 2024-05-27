@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\API\V1\Invokable;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryResource;
 use App\Http\Resources\DepartmentResource;
 use App\Http\Resources\StatusResource;
 use App\Http\Resources\TicketHistoryResource;
 use App\Http\Resources\TicketResource;
+use App\Models\Category;
 use App\Models\Department;
 use App\Models\Status;
 use App\Models\Ticket;
@@ -57,11 +59,14 @@ class TicketDetailController extends Controller
             return $status->id === $ticket->status->id;
         });
 
+        $categories = Category::where('department_id', '=', $ticket->department_id)->get();
+
         return response()->json([
             'success' => true,
             'ticket' => new TicketResource($ticket),
             'statuses' => StatusResource::collection($statuses),
             'departments' => DepartmentResource::collection($departments),
+            'categories' => CategoryResource::collection($categories),
         ]);
     }
 }
