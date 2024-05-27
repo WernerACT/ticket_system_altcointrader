@@ -19,4 +19,9 @@ class Image extends Model
     {
         return $this->belongsTo(ImageType::class);
     }
+
+    protected $casts = [
+        'is_valid' => 'boolean',
+        'should_delete' => 'boolean',
+    ];
 }

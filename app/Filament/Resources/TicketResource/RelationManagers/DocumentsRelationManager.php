@@ -2,10 +2,15 @@
 
 namespace App\Filament\Resources\TicketResource\RelationManagers;
 
+use App\Models\DocumentType;
 use Filament\Forms;
+use Filament\Forms\Components\View;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Support\Enums\MaxWidth;
 use Filament\Tables;
+use Filament\Tables\Columns\SelectColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -18,10 +23,8 @@ class DocumentsRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('documentable.name')
-                    ->required()
-                    ->maxLength(255),
-            ]);
+                View::make('path')->view('filament.forms.document'),
+            ])->columns(1);
     }
 
     public function table(Table $table): Table
@@ -29,25 +32,37 @@ class DocumentsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('documentable')
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('documentType.name'),
-                Tables\Columns\CheckboxColumn::make('is_valid')->label('Is Valid'),
-                Tables\Columns\CheckboxColumn::make('should_delete')->label('Should Delete'),
+                Tables\Columns\TextColumn::make('name')->searchable()->sortable(),
+                TextColumn::make('documentable.reference')
+                    ->label('Ticket Reference')
+                    ->sortable()
+                    ->searchable(),
+                SelectColumn::make('document_type_id')
+                    ->label('Document Type')
+                    ->options(DocumentType::all()->pluck('name', 'id')->toArray())
+                    ->sortable()->searchable(),
+                Tables\Columns\ToggleColumn::make('is_valid')
+                    ->label('Is Valid')
+                    ->onColor('success')
+                    ->offColor('danger'),
+                Tables\Columns\ToggleColumn::make('should_delete')
+                    ->label('Should Delete')
+                    ->onColor('success')
+                    ->offColor('danger'),
+                Tables\Columns\TextColumn::make('updated_at')
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-//                Tables\Actions\CreateAction::make(),
+
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\ViewAction::make(),
+                Tables\Actions\ViewAction::make()->modalWidth(MaxWidth::SevenExtraLarge),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+
             ]);
     }
+
 }

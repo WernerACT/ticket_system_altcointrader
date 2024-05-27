@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\TicketAssignmentService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -22,6 +23,27 @@ class Ticket extends Model
         'status_id',
         'user_id',
     ];
+
+    protected static function booted(): void
+    {
+        static::updating(function ($ticket) {
+            if ($ticket->isDirty('department_id')) {
+                $newDepartment = Department::find($ticket->department_id);
+                if ($newDepartment) {
+                    $ticketAssignmentService = new TicketAssignmentService();
+                    $nextAgent = $ticketAssignmentService->assignTicketToNextAgent($newDepartment);
+                    $ticket->user_id = $nextAgent->id;
+                }
+            }
+
+            if ($ticket->isDirty('user_id')) {
+                $user = User::find($ticket->user_id);
+                if ($user) {
+                    $ticket->department_id = $user->department_id;
+                }
+            }
+        });
+    }
 
     public function department(): BelongsTo
     {

@@ -21,24 +21,20 @@ class SuperAdminUserSeeder extends Seeder
             [
                 'name'              => 'Frik',
                 'email'             => 'frik.maartens@gmail.com',
-                'user_reference'    => 1946583,
                 'department_id'     => 7
             ],
             [
                 'name'              => 'RVG',
                 'email'             => 'rvg@altcointrader.co.za',
-                'user_reference'    => 271914981,
                 'department_id'     => 7
             ],
         ];
 
         foreach ($superAdmins as $superAdmin) {
-            $user = User::create([
+            User::create([
                 'name' => $superAdmin['name'],
                 'email' => $superAdmin['email'],
-                'user_reference' => $superAdmin['user_reference'],
                 'department_id' => $superAdmin['department_id'],
-                'site_access_key' => Str::random(12),
                 'role_id' => 1,
                 'password' => bcrypt('cgmKAi82tjBQ'),
             ]);

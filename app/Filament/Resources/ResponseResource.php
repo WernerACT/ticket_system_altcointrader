@@ -9,6 +9,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -18,7 +19,7 @@ class ResponseResource extends Resource
 {
     protected static ?int $navigationSort = 2;
 
-    protected static ?string $recordTitleAttribute = 'body';
+    protected static ?string $recordTitleAttribute = 'created_at';
 
     protected static ?string $model = Response::class;
 
@@ -46,15 +47,15 @@ class ResponseResource extends Resource
                 Tables\Columns\TextColumn::make('user.name')->searchable()->sortable(),
             ])
             ->filters([
-                //
-            ])
+                SelectFilter::make('user')
+                    ->relationship('user', 'name')->searchable(),
+                SelectFilter::make('ticket')
+                    ->relationship('ticket', 'reference')->searchable(),
+            ])->persistFiltersInSession()
             ->actions([
                 Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
-//                Tables\Actions\BulkActionGroup::make([
-//                    Tables\Actions\DeleteBulkAction::make(),
-//                ]),
             ]);
     }
 

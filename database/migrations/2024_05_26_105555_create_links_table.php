@@ -9,7 +9,8 @@ return new class extends Migration {
     {
         Schema::create('links', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('canned_response_id')->nullable();
+            $table->string('title');
             $table->string('url');
             $table->timestamps();
         });

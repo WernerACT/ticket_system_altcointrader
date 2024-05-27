@@ -16,6 +16,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -40,7 +41,7 @@ class TicketResource extends Resource
                 TextInput::make('email')
                     ->email()
                     ->required(),
-                TextInput::make('reference'),
+                TextInput::make('reference')->readOnly(),
                 Textarea::make('description')
                     ->required()->autosize(),
                 DateTimePicker::make('opened_at'),
@@ -50,7 +51,7 @@ class TicketResource extends Resource
                     ->relationship('status', 'name'),
                 Select::make('user_id')
                     ->relationship('user', 'name'),
-                Select::make('category_id')
+                Select::make('category_id')->multiple()
                     ->relationship('category', 'name'),
             ]);
     }
@@ -62,10 +63,18 @@ class TicketResource extends Resource
                 Tables\Columns\TextColumn::make('email')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('reference')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('created_at')->dateTime()->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('department.name')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('status.name')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('category.name')->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('user.name')->searchable()->sortable(),
+                SelectColumn::make('department_id')
+                    ->label('Department')
+                    ->options(Department::all()->pluck('name', 'id')->toArray())
+                    ->sortable()->searchable(),
+                SelectColumn::make('status_id')
+                    ->label('Status')
+                    ->options(Status::all()->pluck('name', 'id')->toArray())
+                    ->sortable()->searchable(),
+                SelectColumn::make('user_id')
+                    ->label('Assigned To')
+                    ->options(User::all()->pluck('name', 'id')->toArray())
+                    ->sortable()->searchable(),
             ])
             ->filters([
                 SelectFilter::make('status')
@@ -75,15 +84,13 @@ class TicketResource extends Resource
                 SelectFilter::make('category')
                     ->relationship('category', 'name'),
                 SelectFilter::make('user')
-                    ->relationship('user', 'name')
-            ])
+                    ->relationship('user', 'name')->searchable()
+            ])->persistFiltersInSession()
             ->actions([
-                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                //
             ]);
     }
 
@@ -91,10 +98,9 @@ class TicketResource extends Resource
     {
         return [
             RelationManagers\UserRelationManager::class,
+            RelationManagers\ResponsesRelationManager::class,
             RelationManagers\ImagesRelationManager::class,
             RelationManagers\DocumentsRelationManager::class,
-            RelationManagers\DepartmentRelationManager::class,
-            RelationManagers\StatusRelationManager::class,
         ];
     }
 

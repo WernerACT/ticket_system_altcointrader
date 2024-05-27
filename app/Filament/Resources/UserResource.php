@@ -36,16 +36,12 @@ class UserResource extends Resource
             ->schema([
                 TextInput::make('name')->required(),
                 TextInput::make('email')->email()->unique()->required(),
-                TextInput::make('password')->password(),
-                Toggle::make('email_verified_at')->label('Email Verified'),
                 Select::make('department_id')
                     ->relationship('department', 'name')
                     ->nullable(),
                 Select::make('role_id')
                     ->relationship('role', 'name')
                     ->required(),
-                TextInput::make('user_reference')->numeric(),
-                TextInput::make('site_access_key'),
             ]);
     }
 
@@ -72,14 +68,12 @@ class UserResource extends Resource
                     ->relationship('department', 'name'),
                 SelectFilter::make('role')
                     ->relationship('role', 'name'),
-            ])
+            ])->persistFiltersInSession()
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+
             ]);
     }
 

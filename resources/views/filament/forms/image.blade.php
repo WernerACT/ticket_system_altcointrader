@@ -1,7 +1,7 @@
 @php use Illuminate\Support\Facades\Crypt;use Illuminate\Support\Facades\Storage; @endphp
     <!-- resources/views/components/thumbnail.blade.php -->
 
-@if ($record)
+
     @php
         $encryptedContent = Storage::disk('private')->get($getRecord()->path);
         $decryptedContent = Crypt::decrypt($encryptedContent);
@@ -10,5 +10,5 @@
         $base64 = base64_encode($decryptedContent);
         $imageSrc = 'data:' . $mimeType . ';base64,' . $base64;
     @endphp
-    <img src="{{ $imageSrc }}" alt="Thumbnail" class="w-20 h-20 object-cover object-center">
-@endif
+    <img src="{{ $imageSrc }}" alt="image" class="w-full object-cover object-center">
+

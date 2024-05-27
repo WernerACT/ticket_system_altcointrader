@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->foreignId('department_id');
-            $table->json('keywords')->nullable();
+            $table->foreignId('suggested_status_id')->nullable()->constrained('statuses');
             $table->longText('body');
             $table->timestamps();
         });

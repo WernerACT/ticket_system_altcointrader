@@ -53,15 +53,11 @@ class CategoryResource extends Resource
             ->filters([
                 SelectFilter::make('department')
                     ->relationship('department', 'name'),
-            ])
+            ])->persistFiltersInSession()
             ->actions([
                 EditAction::make(),
-                DeleteAction::make(),
             ])
             ->bulkActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
             ]);
     }
 

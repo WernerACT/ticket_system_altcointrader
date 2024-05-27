@@ -5,15 +5,19 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CannedResponseResource\Pages;
 use App\Filament\Resources\CannedResponseResource\RelationManagers;
 use App\Models\CannedResponse;
-use Faker\Provider\Text;
+use App\Models\Category;
+use App\Models\Status;
 use Filament\Forms;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -29,24 +33,18 @@ class CannedResponseResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->fill(function ($record, $request) {
-                $keywords = collect(data_get($request, 'keywords'))->pluck('keyword')->toArray();
-                $record->name = data_get($request, 'name');
-                $record->department_id = data_get($request, 'department_id');
-                $record->keywords = json_encode($keywords);
-                $record->body = data_get($request, 'body');
-                $record->save();
-            })
             ->schema([
                 TextInput::make('name')
                     ->required(),
+                Textarea::make('body')->autosize(),
                 Select::make('department_id')
                     ->relationship('department', 'name'),
-                Repeater::make('keywords')
-                    ->schema([
-                        TextInput::make('keyword')->required(),
-                    ])->collapsible()->collapsed(),
-                Forms\Components\Textarea::make('body')->autosize(),
+                Select::make('categories')
+                    ->multiple()
+                    ->relationship('categories', 'name'),
+                Select::make('suggested_status_id')
+                    ->label('Suggested Status')
+                    ->relationship('suggestedStatus', 'name'),
             ]);
     }
 
@@ -55,27 +53,36 @@ class CannedResponseResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->label('Title'),
-                TextColumn::make('body')->limit(99),
-                TextColumn::make('department.name'),
+                    ->label('Title')->sortable()->searchable(),
+                TextColumn::make('department.name')->sortable(),
+                SelectColumn::make('suggested_status_id')
+                    ->label('Suggested Status')
+                    ->options(Status::all()->pluck('name', 'id')->toArray())
+                    ->sortable()->searchable(),
+                TextColumn::make('links_count')
+                    ->label('Number of Links')
+                    ->counts('links')
+                    ->alignCenter()
+                    ->sortable(),
             ])
             ->filters([
-                //
-            ])
+                SelectFilter::make('categories')->multiple()
+                    ->relationship('categories', 'name'),
+                SelectFilter::make('department')->relationship('department', 'name'),
+                SelectFilter::make('suggestedStatus')->relationship('suggestedStatus', 'name'),
+            ])->persistFiltersInSession()
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+
             ]);
     }
 
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\LinksRelationManager::class,
         ];
     }
 
