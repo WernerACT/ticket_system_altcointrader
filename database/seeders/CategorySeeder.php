@@ -17,6 +17,10 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
+                'name'              => 'Unknown',
+                'department_id'     => 1,
+            ],
+            [
                 'name'              => '2FA not working',
                 'department_id'     => 1,
             ],

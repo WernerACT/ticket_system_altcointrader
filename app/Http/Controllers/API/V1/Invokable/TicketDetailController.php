@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\API\V1\Invokable;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CannedResponseResource;
 use App\Http\Resources\CategoryResource;
 use App\Http\Resources\DepartmentResource;
 use App\Http\Resources\StatusResource;
 use App\Http\Resources\TicketHistoryResource;
 use App\Http\Resources\TicketResource;
+use App\Models\CannedResponse;
 use App\Models\Category;
 use App\Models\Department;
 use App\Models\Status;
@@ -49,7 +51,7 @@ class TicketDetailController extends Controller
             ]);
         }
 
-        $ticket->load(['user', 'department', 'responses.user', 'ticketHistories']);
+        $ticket->load(['user', 'department', 'category', 'responses.user', 'ticketHistories']);
 
         $departments = Department::all()->sortByDesc(function ($dept) use ($ticket) {
             return $dept->id === $ticket->department->id;
@@ -59,7 +61,9 @@ class TicketDetailController extends Controller
             return $status->id === $ticket->status->id;
         });
 
-        $categories = Category::where('department_id', '=', $ticket->department_id)->get();
+        $categories = Category::all()->where('department_id', '=', $ticket->department_id);
+
+        $cannedResponses = CannedResponse::with('department')->paginate(10);
 
         return response()->json([
             'success' => true,
@@ -67,6 +71,7 @@ class TicketDetailController extends Controller
             'statuses' => StatusResource::collection($statuses),
             'departments' => DepartmentResource::collection($departments),
             'categories' => CategoryResource::collection($categories),
+            'canned_responses' => CannedResponseResource::collection($cannedResponses),
         ]);
     }
 }

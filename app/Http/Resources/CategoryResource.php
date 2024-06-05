@@ -13,10 +13,6 @@ class CategoryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-
-            'ticket_id' => $this->ticket_id,
-
-            'ticket' => new TicketResource($this->whenLoaded('ticket')),
         ];
     }
 }

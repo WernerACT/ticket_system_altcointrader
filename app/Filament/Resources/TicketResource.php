@@ -51,7 +51,7 @@ class TicketResource extends Resource
                     ->relationship('status', 'name'),
                 Select::make('user_id')
                     ->relationship('user', 'name'),
-                Select::make('category_id')->multiple()
+                Select::make('category_id')
                     ->relationship('category', 'name'),
             ]);
     }

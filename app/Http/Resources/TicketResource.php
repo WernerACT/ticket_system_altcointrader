@@ -20,6 +20,7 @@ class TicketResource extends JsonResource
             'updated_at' => $this->updated_at->diffForHumans(),
             'created_at' => $this->created_at->diffForHumans(),
 
+            'category' => new CategoryResource($this->whenLoaded('category')),
             'department' => new DepartmentResource($this->whenLoaded('department')),
             'status' => new StatusResource($this->whenLoaded('status')),
             'user' => new UserResource($this->whenLoaded('user')),
