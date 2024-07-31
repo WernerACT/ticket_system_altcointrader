@@ -14,6 +14,8 @@
         "laravel/telescope": "^5.0",
         "laravel/tinker": "^2.9",
         "laravel/vapor-core": "^2.37",
+        "sunspikes/clamav-validator": "^2.9",
+        "tymon/jwt-auth": "^2.1",
         "webklex/laravel-imap": "^5.1"
     },
     "require-dev": {

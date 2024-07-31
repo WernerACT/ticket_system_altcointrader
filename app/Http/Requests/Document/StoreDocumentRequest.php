@@ -10,7 +10,7 @@ class StoreDocumentRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'path' => ['required'],
+            'path' => ['required', 'clamav'],
             'documentable_id' => ['required', 'integer'],
             'documentable_type' => ['required'],
         ];

@@ -51,7 +51,11 @@ class TicketDetailController extends Controller
             ]);
         }
 
-        $ticket->load(['user', 'department', 'category', 'responses.user', 'ticketHistories']);
+        $ticket->load([
+            'user',
+            'department',
+            'category'
+        ]);
 
         $departments = Department::all()->sortByDesc(function ($dept) use ($ticket) {
             return $dept->id === $ticket->department->id;

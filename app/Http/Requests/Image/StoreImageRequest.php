@@ -10,7 +10,7 @@ class StoreImageRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'path' => ['required'],
+            'path' => ['required', 'clamav'],
             'imageable_id' => ['required', 'integer'],
             'imageable_type' => ['required'],
         ];

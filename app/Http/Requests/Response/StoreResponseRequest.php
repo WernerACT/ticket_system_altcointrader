@@ -11,7 +11,7 @@ class StoreResponseRequest extends FormRequest
         return [
             'ticket_id' => ['required', 'exists:tickets,id'],
             'status_id' => ['required', 'exists:statuses,id'],
-            'body' => ['required'],
+            'body' => ['required', 'max:5000'],
         ];
     }
 

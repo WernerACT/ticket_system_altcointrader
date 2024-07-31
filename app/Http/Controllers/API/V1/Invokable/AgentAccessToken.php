@@ -6,24 +6,36 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Laravel\Sanctum\NewAccessToken;
 
 /**
- * ActivateAgentController class.
+ * AgentAccessToken class.
  *
  * @package App\Http\Controllers
  */
-class ActivateAgentController extends Controller
+class AgentAccessToken extends Controller
 {
     /**
-     * Generate an API token for an existing user..
+     * Retrieve the existing API token for an existing user.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Models\User $user
      * @return \Illuminate\Http\JsonResponse
      */
-    public function __invoke(Request $request, User $user)
+    public function __invoke(Request $request)
     {
+        $email = $request->email;
+
+        $user = User::where('email', $email)->first();
+
+        if (!$user) {
+            return response()->json(['error' => 'Access Denied'], 403);
+        }
+
         $token = $user->createToken('Support');
+
+        if (!$token) {
+            return response()->json(['error' => 'Token not found'], 404);
+        }
 
         return response()->json([
             'success' => true,

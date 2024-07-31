@@ -123,4 +123,8 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+
+    'allowed_ips' => env('ACT_LIVE_IP', '127.0.0.1'),
+
+
 ];
