@@ -24,10 +24,21 @@ class SuperAdminUserSeeder extends Seeder
                 'department_id'     => 7
             ],
             [
+                'name'              => 'Adam',
+                'email'             => 'adam@altcointrader.co.za',
+                'department_id'     => 7
+            ],
+            [
                 'name'              => 'RVG',
                 'email'             => 'rvg@altcointrader.co.za',
                 'department_id'     => 7
             ],
+            [
+                'name'              => 'Lizal',
+                'email'             => 'lizal@altcointrader.co.za',
+                'department_id'     => 1
+            ]
+
         ];
 
         foreach ($superAdmins as $superAdmin) {

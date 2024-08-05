@@ -18,12 +18,6 @@ class AgentUserSeeder extends Seeder
     {
         $agentUsers = [
             [
-                'name'              => 'Samantha',
-                'email'             => 'samantha@altcointrader.co.za',
-                'department_id'     => 1
-            ],
-
-            [
                 'name'              => 'Karabo',
                 'email'             => 'karabo@altcointrader.co.za',
                 'department_id'     => 1
@@ -64,29 +58,14 @@ class AgentUserSeeder extends Seeder
                 'department_id'     => 2
             ],
             [
-                'name'              => 'Montana',
-                'email'             => 'montana@altcointrader.co.za',
-                'department_id'     => 2
-            ],
-            [
-                'name'              => 'Talita',
-                'email'             => 'talita@altcointrader.co.za',
-                'department_id'     => 2
-            ],
-            [
-                'name'              => 'Thabiso',
-                'email'             => 'thabiso@altcointrader.co.za',
-                'department_id'     => 2
-            ],
-            [
                 'name'              => 'Veronica',
                 'email'             => 'veronica@altcointrader.co.za',
                 'department_id'     => 2
             ],
             [
-                'name'              => 'Basetsana',
-                'email'             => 'basetsana@altcointrader.co.za',
-                'department_id'     => 2
+                'name'              => 'Jenna',
+                'email'             => 'jenna.t@altcointrader.co.za',
+                'department_id'     => 3
             ],
             [
                 'name'              => 'Patricia',
@@ -96,6 +75,21 @@ class AgentUserSeeder extends Seeder
             [
                 'name'              => 'Chantelle',
                 'email'             => 'chantelle@altcointrader.co.za',
+                'department_id'     => 5
+            ],
+            [
+                'name'              => 'Siphilile',
+                'email'             => 'siphilile@altcointrader.co.za',
+                'department_id'     => 5
+            ],
+            [
+                'name'              => 'Lerato',
+                'email'             => 'lerato@altcointrader.co.za',
+                'department_id'     => 5
+            ],
+            [
+                'name'              => 'Shelia',
+                'email'             => 'shelia@altcointrader.co.za',
                 'department_id'     => 5
             ],
         ];

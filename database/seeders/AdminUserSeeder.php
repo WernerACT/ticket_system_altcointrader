@@ -17,29 +17,24 @@ class AdminUserSeeder extends Seeder
     {
         $adminUsers = [
             [
-                'name'              => 'Lizal',
-                'email'             => 'lizal@altcointrader.co.za',
-                'department_id'     => 1
-            ],
-            [
-                'name'              => 'Piet',
-                'email'             => 'piet@altcointrader.co.za',
-                'department_id'     => 2
-            ],
-            [
                 'name'              => 'Amanda',
                 'email'             => 'amanda@altcointrader.co.za',
                 'department_id'     => 3
             ],
             [
-                'name'              => 'Adam',
-                'email'             => 'adam@altcointrader.co.za',
-                'department_id'     => 7
-            ],
-            [
                 'name'              => 'Pieter',
                 'email'             => 'pieter@altcointrader.co.za',
                 'department_id'     => 4
+            ],
+            [
+                'name'              => 'Victor',
+                'email'             => 'victor@altcointrader.co.za',
+                'department_id'     => 6
+            ],
+            [
+                'name'              => 'Samantha',
+                'email'             => 'samantha@altcointrader.co.za',
+                'department_id'     => 2
             ],
         ];
 
