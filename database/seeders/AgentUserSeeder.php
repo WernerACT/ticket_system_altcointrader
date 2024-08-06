@@ -23,14 +23,9 @@ class AgentUserSeeder extends Seeder
                 'department_id'     => 1
             ],
             [
-                'name'              => 'Jeff',
-                'email'             => 'jeff@altcointrader.co.za',
-                'department_id'     => 1
-            ],
-            [
                 'name'              => 'Geraldine',
                 'email'             => 'geraldine@altcointrader.co.za',
-                'department_id'     => 1
+                'department_id'     => 4
             ],
             [
                 'name'              => 'Charlotte',
@@ -63,9 +58,14 @@ class AgentUserSeeder extends Seeder
                 'department_id'     => 2
             ],
             [
+                'name'              => 'Marcia',
+                'email'             => 'marcia@altcointrader.co.za',
+                'department_id'     => 2
+            ],
+            [
                 'name'              => 'Jenna',
                 'email'             => 'jenna.t@altcointrader.co.za',
-                'department_id'     => 3
+                'department_id'     => 2
             ],
             [
                 'name'              => 'Patricia',
@@ -80,17 +80,17 @@ class AgentUserSeeder extends Seeder
             [
                 'name'              => 'Siphilile',
                 'email'             => 'siphilile@altcointrader.co.za',
-                'department_id'     => 5
+                'department_id'     => 2
             ],
             [
                 'name'              => 'Lerato',
                 'email'             => 'lerato@altcointrader.co.za',
-                'department_id'     => 5
+                'department_id'     => 1
             ],
             [
                 'name'              => 'Shelia',
                 'email'             => 'shelia@altcointrader.co.za',
-                'department_id'     => 5
+                'department_id'     => 1
             ],
         ];
 
