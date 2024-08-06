@@ -26,7 +26,10 @@ class TicketController extends Controller
             $query->where('created_at', '>=', $request->start_date);
         }
         if ($request->filled('end_date')) {
-            $query->where('created_at', '<=', $request->end_date);
+
+            $endDate = $request->end_date . " 23:59:59";
+
+            $query->where('created_at', '<=', $endDate);
         }
         if ($request->filled('status_id') && $request->status_id != 0) {
             $query->where('status_id', $request->status_id);
