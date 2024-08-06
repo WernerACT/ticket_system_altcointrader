@@ -55,13 +55,12 @@ class ProcessEmailIntoTicket implements ShouldQueue
                 $data = [
                     'title' => $this->email['subject'] ?? 'No Subject Provided',
                     'email' => $this->email['from'],
-                    'description' => strip_tags($this->email['subject']
-                        . ' - '
-                        . '<br><br>'
+                    'description' =>
+                        '<br><br>'
                         . $this->email['body']
                         . '<br><br>'
                         . $this->email['html'],
-                        '<br>'),
+                        '<br>',
                     'department_id' => $department->id,
                     'status_id' => 1,
                     'user_id' => $agent->id,
