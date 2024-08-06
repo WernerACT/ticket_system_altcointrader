@@ -51,7 +51,7 @@
                                                         Your ticket with  Reference ID: <strong> {{$ticket->reference}}  </strong>has been created.
                                                         <br>
                                                         <br>
-                                                        Description: {{strip_tags($ticket->description)}}
+                                                        Description: {{ $ticket->description }}
                                                         <br>
                                                         <br>
                                                         Status: In Progress
