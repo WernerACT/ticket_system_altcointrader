@@ -19,6 +19,11 @@ class SuperAdminUserSeeder extends Seeder
     {
         $superAdmins = [
             [
+                'name'              => 'JWT Auth',
+                'email'             => 'sysadmin@altcointrader.co.za',
+                'department_id'     => 6
+            ],
+            [
                 'name'              => 'Frik',
                 'email'             => 'frik.maartens@gmail.com',
                 'department_id'     => 7
