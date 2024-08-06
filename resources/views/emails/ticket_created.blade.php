@@ -53,7 +53,6 @@
                                                         <br>
                                                         Subject: {{$ticket->title }}
                                                         <br>
-                                                        <br>
                                                         Description: {{ strip_tags($ticket->description) }}
                                                         <br>
                                                         <br>
