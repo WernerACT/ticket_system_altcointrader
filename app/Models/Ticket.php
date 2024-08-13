@@ -26,6 +26,13 @@ class Ticket extends Model
 
     protected static function booted(): void
     {
+        static::created(function ($ticket) {
+            if (empty($ticket->reference)) {
+                $ticket->reference = $ticket->generateReference();
+                $ticket->save();
+            }
+        });
+
         static::updating(function ($ticket) {
             if ($ticket->isDirty('department_id')) {
                 $newDepartment = Department::find($ticket->department_id);
@@ -43,6 +50,11 @@ class Ticket extends Model
                 }
             }
         });
+    }
+
+    public function generateReference(): string
+    {
+        return 'ACT' . str_pad($this->id + 100000, 6, '0', STR_PAD_LEFT);
     }
 
     public function department(): BelongsTo
@@ -80,12 +92,19 @@ class Ticket extends Model
         return $this->hasMany(Response::class);
     }
 
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
+
     public function ticketHistories()
     {
         return $this->hasMany(TicketHistory::class);
     }
 
     protected $casts = [
-        'opened_at' => 'datetime'
+        'opened_at' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
     ];
 }

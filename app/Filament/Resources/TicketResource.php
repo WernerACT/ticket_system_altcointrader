@@ -46,13 +46,13 @@ class TicketResource extends Resource
                     ->required()->autosize(),
                 DateTimePicker::make('opened_at'),
                 Select::make('department_id')
-                    ->relationship('department', 'name'),
+                    ->relationship('department', 'name')->required(),
                 Select::make('status_id')
-                    ->relationship('status', 'name'),
+                    ->relationship('status', 'name')->required(),
                 Select::make('user_id')
-                    ->relationship('user', 'name'),
+                    ->relationship('user', 'name')->required(),
                 Select::make('category_id')
-                    ->relationship('category', 'name'),
+                    ->relationship('category', 'name')->required(),
             ]);
     }
 

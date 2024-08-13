@@ -35,7 +35,7 @@ class UserResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')->required(),
-                TextInput::make('email')->email()->unique()->required(),
+                TextInput::make('email')->email()->unique(ignoreRecord: true)->required(),
                 Select::make('department_id')
                     ->relationship('department', 'name')
                     ->nullable(),

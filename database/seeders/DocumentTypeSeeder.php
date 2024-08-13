@@ -19,6 +19,11 @@ class DocumentTypeSeeder extends Seeder
                     ['name' => 'Passport Copy'],
                     ['name' => 'Proof of Payment'],
                     ['name' => 'Spam'],
+                    ['name' => 'Proof of Address'],
+                    ['name' => 'Selfie'],
+                    ['name' => 'Screenshot (Missing Deposit)'],
+                    ['name' => 'Screenshot (Missing Withdrawal)'],
+                    ['name' => 'Screenshot (AltCoinTrader Error)'],
                 ];
 
                 DB::table('document_types')->insert($types);

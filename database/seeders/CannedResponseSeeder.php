@@ -732,6 +732,773 @@ Kindly respond to this same email to avoid creating multiple tickets please.'
                 'body' => 'Please note that for security purposes we need you to provide us with the source of your funds, which is the bank statement of the account from which the deposits were made as well as the last 2 proof of payments made to us.
 
 Please state where you are trying to access this account from and provide us with your IP address in order for us to further assist you.'
+            ],
+            [
+                'name' => 'Nigerian Blacklist',
+                'department_id' => 4,
+                'body' => 'Kindly state where you are attempting to withdraw/ access your account from and provide us with your IP address.
+
+Please note that for security purposes we need you to provide us with the source of your funds, which is the bank statement of the account from which the deposits were made and the proof of payments made to us.'
+            ],
+            [
+                'name' => 'Possible Compromised Account',
+                'department_id' => 4,
+                'body' => 'Kindly be advised that your account was flagged as compromised. Please note that we require you to send us a picture of yourself holding your ID next to your face with a handwritten piece of paper, where you have written todays date, AltCoin Trader, and unblock your account.
+
+    Visit our help center to see an idea of how to take the requested picture
+
+Kindly activate 2-factor authentication as well on your account.
+
+Please respond to this same email to avoid creating multiple tickets.'
+            ],
+            [
+                'name' => 'Trader over 60',
+                'department_id' => 4,
+                'body' => 'Kindly be advised that your account was flagged as compromised. Please note that we require you to send us a picture of yourself holding your ID next to your face with a handwritten piece of paper, where you have written todays date, AltCoin Trader, and permit withdrawal.
+
+    Visit our help center to see an idea of how to take the requested picture;
+
+Kindly respond to this same email to avoid creating multiple tickets.'
+            ],
+            [
+                'name' => 'Third-party deposit',
+                'department_id' => 4,
+                'body' => 'Please kindly note that third-party deposits/withdrawals are not allowed as they open up an avenue for traders to be scammed/defrauded under the cover of one trading for/buying coins on their behalf. All traders are encouraged to have their accounts and trade on this platform.
+
+Please note that we will require a signed affidavit from the individual who has deposited to your account confirming exactly whose account they have deposited to, the amounts that they have deposited as well as the reason why they deposited to this account, along with their proof of payments.
+
+Please note that the required signed affidavit from the individual should contain the below and not AltCoinTrader details:
+- Your name and surname
+- your ID number
+- your AltCoinTrader reference number
+- amount deposited
+- reason for deposit in your account
+- state that they are fully aware that Altcoin Trader will not be held liable
+- their proof of payments
+
+Please note that once the affidavit has been written out we will then require a selfie of them holding the affidavit and their ID next to their faces all in one picture.'
+            ],
+            [
+                'name' => 'Confirm SOF',
+                'department_id' => 4,
+                'body' => 'Please note that for security purposes we need you to provide us with the source of your funds, which is the PDF bank statement of the account from which the deposits were made reflecting the payments made to Altcointrader as well as the below downloaded PDF proof of payments made to us.
+
+Please note: The proof of payment should contain the following information:
+
+* Date of Payment
+* Amount
+* Account number where the money was paid to
+* The reference that was used for AltCoinTrader
+
+Please bear in mind that a screenshot of the payment/bank statement is not acceptable as this does not contain all the information required.
+
+Kindly respond to this same email to avoid creating multiple tickets.'
+            ],
+            [
+                'name' => 'Incorrect SOF sent to us',
+                'department_id' => 4,
+                'body' => 'Please note that we are unable to accept the attachments you have sent us because we need the actual PDF copies of your proof of payment and your bank statement showing the transaction coming out of your account please.
+
+Kindly respond to this same email to avoid creating multiple tickets, please.'
+            ],
+            [
+                'name' => 'IP related blacklist',
+                'department_id' => 4,
+                'body' => 'Please state where you are trying to access this account from and provide us with your IP address for us to further assist you.
+
+If the client provides us with an international IP address:
+
+Please note we have noticed a login to your account from an international IP address, we have taken steps to place a hold on your account for your safety, if this login was made by yourself please explain to us the reason for this.
+
+By adding 2-factor authentication to your account, your account will be more secure.
+
+If the IP address sent is sufficient:
+
+Please send us a picture of yourself holding your ID document next to your face and a piece of paper written AltCoinTrader and todays date.
+
+    Please make sure that the details ie. Your name, surname, and ID number are visible and not obstructed by your finger or the flash of the camera.'
+            ],
+            [
+                'name' => 'VPN related blacklist',
+                'department_id' => 4,
+                'body' => 'Please provide us with your public IP address and not a VPN or private IP address for us to further assist you.
+
+If the client once again sends a VPN address:
+
+Kindly confirm if you are using a VPN to log in to this account as well as why you are using a VPN if this is the case, as your account was flagged as possibly compromised due to suspicious logins from a VPN network.'
+            ],
+            [
+                'name' => 'Suspicious Address',
+                'department_id' => 4,
+                'body' => 'Please note that we require you to answer the below question for us to further assist you.
+
+How did you hear about Altcointrader?
+Were you referred by anyone to Altcointrader?
+Were you approached by anyone on social media (i.e. WhatsApp, tik tok, Facebook, Twitter, Instagram)
+Do you have any other trading account that requires you to open an account with AltCoinTrader?
+Is there anyone assisting you with your account or with trading
+Where will you be sending/moving your coins to once you start buying/trading on our platform or duwill you leave it in your Altcointrader account?
+
+If all checks out:
+(If there are ZAR deposits)
+
+Please note that for security purposes we need you to provide us with the source of your funds, which is the bank statement of the account from which the deposits were made as well as the proof of payments made to us.
+
+And:
+
+Please note for us to remove the hold on this account we require a picture of yourself holding your ID next to your face as well as a piece of paper with the words AltCoinTrader, remove the hold and todays date.
+
+    (If there are no ZAR deposits)
+
+Please note for us to remove the hold on this account we require a picture of yourself holding your ID next to your face as well as a piece of paper with the words AltCoinTrader, remove the hold and todays date.'
+            ],
+            [
+                'name' => 'Suspicious Domain',
+                'department_id' => 4,
+                'body' => 'Please note that we require you to answer the below question for us to further assist you.
+
+How did you hear about Altcointrader?
+Were you referred by anyone to Altcointrader?
+Were you approached by anyone on social media (i.e. WhatsApp, tik tok, Facebook, Twitter, Instagram)
+Do you have any other trading account that requires you to open an account with AltCoinTrader?
+Is there anyone assisting you with your account or with trading
+Where will you be sending/moving your coins to once you start buying/trading on our platform or will you leave it in your Altcointrader account?
+
+If all checks out:
+
+(If there are ZAR deposits)
+
+Please note that for security purposes we need you to provide us with the source of your funds, which is the bank statement of the account from which the deposits were made as well as the proof of payments made to us.
+
+And:
+
+Please note for us to remove the hold on this account we require a picture of yourself holding your ID next to your face as well as a piece of paper with the words AltCoinTrader, remove the hold and todays date.
+
+    (If there are no ZAR deposits)
+
+Please note for us to remove the hold on this account we require a picture of yourself holding your ID next to your face as well as a piece of paper with the words AltCoinTrader, remove the hold and todays date.'
+            ],
+            [
+                'name' => 'Suspicious Keyword',
+                'department_id' => 4,
+                'body' => 'Please note that we require you to answer the below question for us to further assist you.
+
+How did you hear about Altcointrader?
+Were you referred by anyone to Altcointrader?
+Were you approached by anyone on social media (i.e. WhatsApp, tik tok, Facebook, Twitter, Instagram)
+Do you have any other trading account that requires you to open an account with AltCoinTrader?
+Is there anyone assisting you with your account or with trading
+Where will you be sending/moving your coins to once you start buying/trading on our platform or will you leave it in your Altcointrader account?
+
+If all checks out:
+
+(If there are ZAR deposits)
+
+Please note that for security purposes we need you to provide us with the source of your funds, which is the bank statement of the account from which the deposits were made as well as the proof of payments made to us.
+
+And:
+
+Please note for us to remove the hold on this account we require a picture of yourself holding your ID next to your face as well as a piece of paper with the words AltCoinTrader, remove the hold and todays date.
+
+    (If there are no ZAR deposits)
+
+Please note for us to remove the hold on this account we require a picture of yourself holding your ID next to your face as well as a piece of paper with the words AltCoinTrader, remove the hold, and todays date.'
+            ],
+            [
+                'name' => 'Suspicious country code',
+                'department_id' => 4,
+                'body' => 'Please note that we require you to answer the below question for us to further assist you.
+
+
+How did you hear about Altcointrader?
+Were you referred by anyone to Altcointrader?
+Were you approached by anyone on social media (i.e. WhatsApp, tik tok, Facebook, Twitter, Instagram)
+Do you have any other trading account that requires you to open an account with AltCoinTrader?
+Is there anyone assisting you with your account or with trading
+Where will you be sending/moving your coins to once you start buying/trading on our platform or will you leave it in your Altcointrader account?
+
+If all checks out:
+
+(If there are ZAR deposits)
+
+Please note that for security purposes we need you to provide us with the source of your funds, which is the bank statement of the account from which the deposits were made as well as the proof of payments made to us.
+
+And:
+
+Please note for us to remove the hold on this account we require a picture of yourself holding your ID next to your face as well as a piece of paper with the words AltCoinTrader, remove the hold and todays date.
+
+    (If there are no ZAR deposits)
+
+Please note for us to remove the hold on this account we require a picture of yourself holding your ID next to your face as well as a piece of paper with the words AltCoinTrader, remove the hold, and todays date..'
+            ],
+            [
+                'name' => 'Cellphone number linked to multiple profiles',
+                'department_id' => 4,
+                'body' => 'Please note that we require you to answer the below question for us to further assist you.
+
+- How did you hear about Altcointrader?
+- Were you referred by anyone to Altcointrader? - Were you approached by anyone on social media (i.e. WhatsApp, TikTok, Facebook, Twitter, Instagram) with regards to trading, loan application, or job application?
+- Do you have any other trading account that requires you to open an account with AltCoinTrader?
+- Is there anyone assisting you with your account or with trading and providing you with trading advice?
+- Where will you be sending/moving your coins to once you start buying/trading on our platform or will you leave it in your Altcointrader account?
+- Whose cellphone number is registered on your profile?
+- Kindly state how many cellphone numbers you have and provide them to us.
+
+If all checks out:
+
+Kindly be advised that because your details have been compromised we do require an affidavit from you in this regard for us to verify your account and terminate his account.
+
+The affidavit should state what you have advised us below
+
+- why is your cell number registered on someone elses profile
+    - who is the person( Full name and surname with ID number)
+- where did you meet the person
+    - how would you like us to further assist you
+    - That you - the owner of the cell phone number - take full responsibility for us removing the hold on your account and terminating the other account.
+
+    Kindly be advised that we need you to send us a picture of yourself holding your ID next to your face with the affidavit, please.'
+            ],
+            [
+                'name' => 'Bank reported fraud/ As per #HD',
+                'department_id' => 4,
+                'body' => 'Please note that we are unable to further assist you as the bank reported fraud on your account.
+
+Please have your bank contact us at fraud@altcointrader.co.za about removing the hold on the account.
+
+We are unable to remove the hold unless the bank corresponds with us directly and advises us that the reported transaction is not fraudulent.
+
+If the bank does contact us to remove the hold:
+
+Kindly be advised as per the email from your bank (ACT918389) the hold has successfully been removed from your account as per their request. You are now able to log in successfully and withdraw accordingly.'
+            ],
+            [
+                'name' => 'Scammed/ Possibly Scammed',
+                'department_id' => 4,
+                'body' => 'Kindly note that AltCoinTrader does not have brokers/agents representing us and/or trading on behalf of clients. Nor do we charge any fees besides those listed on our fees page. Trading on someones behalf, third-party deposits, and third-party withdrawals are not allowed on this platform. Altcoin Trader is a trading platform and not an investment platform or a company that offers loans, jobs, or even requires payments for insurance or withdrawals and has no affiliation with other companies.
+
+    Please provide any information regarding this person account you deposited into as well as proof of payments for the deposits made into the account 021276617 so an investigation can be launched. Kindly be advised that the 9-digit reference number used to make the payment into our Altcoin Trader account held by Standard Bank is a unique reference number that differentiates each clients profile account from one another. Please note that an Altcoin Trader account is similar to ones bank account therefore when funds are being paid into the account it is credited directly to the reference number used.
+
+    Kindly report fraud to your bank and the police please as you have been a victim of a scam.'
+            ],
+            [
+                'name' => 'Compromised 2FA',
+                'department_id' => 4,
+                'body' => 'Kindly find the below URL link for steps on how to activate the 2 FA on your Altcoin Trader account https://altcointrader.zendesk.com/hc/en-gb/articles/360007179680-How-to-enable-2FA-on-my-AltCoinTrader-account-
+
+Please note that once you have successfully activated 2FA on your account we need you to secure your Google authenticator codes by following the below:
+
+- Going into the Google Authenticator app
+- On your right top-hand corner next to the words "Google Authenticator" you will see a cloud with a tick in it and next to it, there is a circle with either your initial or a picture of yourself.
+- Please click on the circle and will see a drop-down
+- Look for the option that says "use without an account"
+- Click on it, then press continue
+- Once this is done it will take you back to the original page showing your codes and you will see there is a line running through the cloud
+
+These steps are to be followed accordingly for your codes not to be backed up on your Google account to prevent them from being compromised.'
+            ],
+            [
+                'name' => 'Proof of residence does not match the profile',
+                'department_id' => 4,
+                'body' => 'Please note that the address on the proof of residence you submitted does not match with the address on the profile, please update your profile for us to verify your account.'
+            ],
+            [
+                'name' => 'ID document does not match the profile',
+                'department_id' => 4,
+                'body' => 'Please note that the ID Document you submitted does not match the details on the profile, please update your profile for us to remove the hold on your account.'
+            ],
+            [
+                'name' => 'Proof of residence not in the client’s name',
+                'department_id' => 4,
+                'body' => 'If you do not have any documentation in your name as you live with someone else, please upload an affidavit stamped from the Commissioner of Oaths from the owner of the residence confirming that you reside with them along with the owners utility bill and ID document.'
+            ],
+            [
+                'name' => 'Third-party call',
+                'department_id' => 4,
+                'body' => 'Kindly be advised that a hold has been placed on your withdrawals as someone else called in regarding your account.
+
+Kindly be advised that we require an affidavit where you have stated the below :
+
+- Who the person is who called in on your behalf,
+
+- What is your relationship with this person?
+
+- Why is this person assisting you with your account?
+
+
+Kindly be advised that we need you to send us a picture of yourself holding your ID next to your face with the affidavit, please.'
+            ],
+            [
+                'name' => 'Falsified info or edited documentation',
+                'department_id' => 4,
+                'body' => 'Edited Selfie:
+
+Please note that the picture you’ve sent is incorrect.
+
+Kindly resend a picture of yourself holding your original ID next to your face together with a piece of paper handwritten AltCoinTrader, Unblock Account, and todays date. Make sure that the ID is clear and readable.
+
+    Please make sure that the details ie. Your name, surname, and ID number are visible and not obstructed by your finger or the flash of the camera. Please also ensure that the details in the picture are not flipped around.
+
+    Visit our help center to see an idea of how to take the requested picture
+https://altcointrader.zendesk.com/hc/en-gb/articles/360007355279-Picture-of-yourself-holding-your-ID
+
+Kindly respond to this same email to avoid creating multiple tickets please.
+
+
+    Edited document:
+
+Please note that the document you’ve sent is incorrect.
+
+    Kindly resend the requested documentation. Make sure that the information on your document is clear and readable.
+
+    Kindly respond to this same email to avoid creating multiple tickets please.
+
+If a new selfie or document is submitted, ask the following:
+
+Please note that for security purposes we need you to provide us with the source of your funds, which is the PDF bank statement of the account from which the deposits were made reflecting the payments made to Altcointrader as well as the below, downloaded PDF proof of payments made to us.
+
+    Please note: The proof of payment should contain the following information:
+
+* Date of Payment
+    * Amount
+    * Account number where the money was paid to
+    * The reference that was used for AltCoinTrader
+
+                                      Please bear in mind that a screenshot of the payment/bank statement is not acceptable as this does not contain all the information required.
+
+    Kindly respond to this same email to avoid creating multiple tickets.
+
+If there are ZAR deposits, and SOF checks out:
+
+Please note that we require you to answer the below question in order for us to further assist you.
+
+    How did you hear about Altcointrader?
+        Were you referred by anyone to Altcointrader?
+        Were you approached by anyone on social media (i.e. WhatsApp, TikTok, Facebook, Twitter, Instagram)
+Do you have any other trading account that requires you to open an account with AltCoinTrader?
+        Is there anyone assisting you with your account or with trading
+Where will you be sending/moving your coins to once you start buying/trading on our platform or will you leave it in your Altcointrader account?
+
+If satisfied by the client’s answers:
+
+Kindly provide us with an affidavit stating why you falsified information/documentation on our platform and/or provided us with falsified information/documentation.
+
+    After receiving the affidavit:
+
+Unfortunately, to retrieve the funds deposited into your account, you will need to contact your bank. The bank must initiate a withdrawal request on their end before we can proceed further in this regard.'
+            ],
+            [
+                'name' => 'Temporary hold as per the bank',
+                'department_id' => 4,
+                'body' => 'Kindly be advised that we placed a temporary hold on your withdrawals as Standard Bank contacted us with regards to the payment you made due to the large amount from your account it appears that our email did not reach you to advise you as your bank was unable to get a hold of you to confirm the transaction as legit.
+
+For the hold to be lifted you need to confirm transactions as legit with your bank and also they need to send us an email regarding this matter, please.'
+            ],
+            [
+                'name' => 'Third-party documentation submitted',
+                'department_id' => 4,
+                'body' => 'Third-party documentation submitted
+Kindly be advised that a hold has been placed on your withdrawals as you have uploaded someone elses documents to your account.
+
+    Kindly be advised that we require an affidavit where you have stated the below :
+
+- Who the person is whose documents you uploaded?
+
+        - What is your relationship with this person?
+
+        - Why do you have this persons documents?
+
+Kindly be advised that we need you to send us a picture of yourself holding your ID next to your face with the affidavit, please.
+
+If the above is received:
+
+Kindly be advised that we require an affidavit from that person where they have stated the below:
+
+- Why were your details used and are you aware?
+
+- What is your relationship with this person?
+Kindly be advised that we need you to send us a picture of the person holding their ID next to their face with the affidavit, please.'
+            ],
+            [
+                'name' => 'Third-party assistance',
+                'department_id' => 4,
+                'body' => 'Kindly note that AltCoinTrader does not have brokers/agents/upliners/recruiters representing us and/or trading on behalf of clients. Nor do we charge any fees besides those listed on our fees page. Trading on someones behalf, third-party deposits, and third-party withdrawals are not allowed on this platform. Altcoin Trader is a trading platform and not an investment platform.
+
+    Please note that because you have stated that you have a recruiter you must provide us with a certified affidavit stating the following:
+-The name of your recruiter
+    -How/where you met this person
+    -What is the relationship between the two of you?
+        -Do they have access to your personal details or your account?
+        -You have fully read and understood our terms and conditions as we do not have any recruiters or representatives in AltcoinTrader.
+    -That any trading, deposits, or withdrawals done on your AltCoinTrader account will solely be done by you (the owner of the account) as per the terms and conditions agreed to when you opened the account.
+    -State that you are fully aware that Altcoin Trader will not be held liable for any loss you encounter or if your account is compromised.
+
+    Together with this affidavit we also require a picture of yourself holding the affidavit as well as your Id document.'
+            ],
+            [
+                'name' => 'Dormant account',
+                'department_id' => 4,
+                'body' => 'Please note that the withdrawals for your account have been placed on hold as a security precaution because your account has not been accessed for an extended period.
+
+Please provide us with the following selfie so that we may have your account unblocked as soon as possible:
+
+Please upload a selfie of yourself holding your ID document next to your face with a piece of paper that has the following written on it: Altcoin trader, today\'s date, and unblock the account.'
+            ],
+            [
+                'name' => 'Account De-Risked',
+                'department_id' => 4,
+                'body' => 'Kindly be advised that your account was flagged as compromised. Please note that we require you to send us a picture of yourself holding your ID next to your face with a handwritten piece of paper, where you have written today\'s date, AltCoin Trader, and unblock account.'
+            ],
+            [
+                'name' => 'Zenlayer VPN/IP address block (23.251.119.153)',
+                'department_id' => 4,
+                'body' => 'Please note that we require you to answer the below question for us to further assist you.
+
+How did you hear about Altcointrader?
+Were you referred by anyone to Altcointrader?
+Were you approached by anyone on social media (i.e. WhatsApp, tik tok, Facebook, Twitter, Instagram)
+Do you have any other trading account that requires you to open an account with AltCoinTrader?
+Is there anyone assisting you with your account or with trading
+Where will you be sending/moving your coins to once you start buying/trading on our platform or duwill you leave it in your Altcointrader account?
+
+Furthermore, please state where you are trying to access this account from and provide us with your IP address for us to further assist you.
+
+If the above checks out:
+
+Please note that for security purposes we need you to provide us with the source of your funds, which is the PDF bank statement of the account from which the deposits were made reflecting the payments made to Altcointrader as well as the below downloaded PDF proof of payments made to us.
+
+Please note: The proof of payment should contain the following information:
+
+* Date of Payment
+* Amount
+* Account number where the money was paid to
+* The reference that was used for AltCoinTrader
+
+Please bear in mind that a screenshot of the payment/bank statement is not acceptable as this does not contain all the information required.
+
+Kindly respond to this same email to avoid creating multiple tickets.
+
+If the source of funds check out:
+
+Kindly be advised that your account was flagged as compromised. Please note that we require you to send us a picture of yourself holding your ID next to your face with a handwritten piece of paper, where you have written today\'s date, AltCoin Trader, and unblock account.'
+            ],
+            [
+                'name' => 'Educate',
+                'department_id' => 4,
+                'body' => 'Kindly note that AltCoinTrader does not have brokers/agents representing us and/or trading on behalf of clients. Nor do we charge any fees besides those listed on our fees page. Trading on someone\'s behalf, third-party deposits, and third-party withdrawals are not allowed on this platform. Altcoin Trader is a trading platform and not an investment platform or a company that offers loans, jobs, or even requires payments for insurance or withdrawals and has no affiliation with other companies.
+
+    Please provide any information regarding this person/account you deposited into as well as proof of payments for the deposits made into the account 021276617 so an investigation can be launched. Kindly be advised that the 9-digit reference number used to make the payment into our Altcoin Trader account held by Standard Bank is a unique reference number that differentiates each client\'s profile/account from one another. Please note that an Altcoin Trader account is similar to one\'s bank account therefore when funds are being paid into the account it is credited directly to the reference number used.
+
+    Kindly report fraud to your bank and the police please as you have been a victim of a scam.'
+            ],
+            [
+                'name' => 'Security Questions',
+                'department_id' => 4,
+                'body' => 'Please note that we require you to answer the below question in order for us to further assist you.
+
+How did you hear about Altcointrader?
+Were you referred by anyone to Altcointrader?
+Were you approached by anyone on social media (i.e. WhatsApp, TikTok, Facebook, Twitter, Instagram)
+Do you have any other trading account that requires you to open an account with AltCoinTrader?
+Is there anyone assisting you with your account or with trading
+Where will you be sending/moving your coins to once you start buying/trading on our platform or will you leave it in your Altcointrader account?'
+            ],
+            [
+                'name' => 'Security questions plus cellphone questions',
+                'department_id' => 4,
+                'body' => 'Please note that we require you to answer the below question for us to further assist you.
+
+- How did you hear about Altcointrader?
+- Were you referred by anyone to Altcointrader? - Were you approached by anyone on social media (i.e. WhatsApp, TikTok, Facebook, Twitter, Instagram) with regards to trading, loan application, or job application?
+- Do you have any other trading account that requires you to open an account with AltCoinTrader?
+- Is there anyone assisting you with your account or with trading and providing you with trading advice?
+- Where will you be sending/moving your coins to once you start buying/trading on our platform or will you leave it in your Altcointrader account?
+- Whose cellphone number is registered on your profile?
+- Kindly state how many cellphone numbers you have and provide them to us.'
+            ],
+            [
+                'name' => 'Client refuses to answer the questions asked',
+                'department_id' => 4,
+                'body' => 'Kindly note as per section 7.2 of our terms & conditions, "...AltCoinTrader reserves the right to request independent verification of any information transmitted via e-mail and the user consents to such verification should AltCoinTrader deem it necessary."
+
+Please note that we require you to answer all the questions asked before we are able to further assist you in this regard.'
+            ],
+            [
+                'name' => 'Secure account',
+                'department_id' => 4,
+                'body' => 'Please note that you can use the following steps to secure your account and ensure that future incidents do not occur while we assess this matter:
+
+Steps you can take to secure your account.
+• Change your password on AltCoinTrader.
+• Change your password for your email.
+• Do not give any passwords to anybody, not even the staff of the company you are dealing with.
+• Never use the same password for 2 different services.
+• Enable 2 factor authentication where possible.
+• Only log in from a secure device.
+
+Please note that we need you to secure your Google authenticator codes by following the below:
+
+- going into the Google Authenticator app
+
+- on your right top-hand corner next to the words "Google Authenticator" you will see a cloud with a tick in it and next to it, there is a circle with either your initial or a picture of yourself.
+
+- please click on the circle and will see a drop-down
+
+- look for the option that says "use without an account"
+
+- click on it, then press continue
+
+- once this is done it will take you back to the original page showing your codes and you will see there is a line running through the cloud
+
+These steps are to be followed accordingly in order for your codes not to be backed up on your Google account to prevent them from being compromised.'
+            ],
+            [
+                'name' => 'Require an unblock selfie',
+                'department_id' => 4,
+                'body' => 'Kindly be advised that your account was flagged as compromised. Please note that we require you to send us a picture of yourself holding your ID next to your face with a handwritten piece of paper, where you have written today\'s date, AltCoin Trader, and unblock account.'
+            ],
+            [
+                'name' => 'Hold Removed',
+                'department_id' => 4,
+                'body' => 'Kindly be advised that the hold has successfully been removed from your account as per your attachments. You are now able to log in and withdraw your funds.'
+            ],
+            [
+                'name' => 'Account terminated',
+                'department_id' => 4,
+                'body' => 'Please note that if we determine, based on our sole discretion, that you have breached the agreement, or that of the service, or your use of the service is illegal under the laws of your jurisdiction, we reserve the right to suspend or terminate your account/s, or suspend or terminate your use of AltCoinTrader’s service/s.
+
+Please note that we would like to inform you that we will be terminating the services of your AltCoinTrader account. We are derisking your account based on our risk management program.
+
+We will keep your account open until <21-03-2022> to ensure that you can withdraw all of your funds to alternative accounts/addresses.'
+            ],
+            [
+                'name' => 'No Context/Content',
+                'department_id' => 4,
+                'body' => 'Your email was received without any content, please elaborate on your inquiry and provide us with additional information, including screenshots, so we can further assist.'
+            ],
+            [
+                'name' => 'Duplicate e-mail',
+                'department_id' => 4,
+                'body' => 'Kindly be advised that this is classified as a duplicated email as we work according to a ticket system and require all clients to respond to one email only focusing on one ticket number to avoid any confusion please as multiple duplicate emails or tickets will result in spamming your email on our platform.
+
+This ticket will therefore be closed and we will focus on the ticket number XXX.'
+            ],
+            [
+                'name' => 'No documents are attached to the e-mail',
+                'department_id' => 4,
+                'body' => 'Kindly note that there are no documents attached to the e-mail sent to us. Please resend your e-mail with the requested documentation attached.
+
+Please respond to this same email to avoid creating multiple tickets.'
+            ],
+            [
+                'name' => 'Provide us with proof of payments',
+                'department_id' => 4,
+                'body' => 'Kindly provide us with proof of payments for the last 2 transactions on your account please for us to further assist you in this regard.
+
+Kindly provide us with a downloaded proof of payment for this transaction.
+Please note: The proof of payment should contain the following information:
+
+* Date of Payment
+* Amount
+* Account number where the money was paid to
+* The reference that was used for AltCoinTrader
+
+Please bear in mind that a bank statement or screenshot of the payment is not acceptable as this does not contain all the information required.
+
+Please contact your bank should you have difficulties downloading a proof of payment as they will be able to assist you in this matter.'
+            ],
+            [
+                'name' => 'Downloaded proof of payment',
+                'department_id' => 4,
+                'body' => 'Kindly send a downloaded proof of payment that shows all the deposit details so that we can be able to trace your payment and credit your account.
+
+Please note that we won\'t be able to assist you with a screenshot or bank statement as it doesn\'t show all the details of the deposit.'
+            ],
+            [
+                'name' => 'POA - The client resides with someone else',
+                'department_id' => 4,
+                'body' => 'If you do not have any documentation in your name as you live with someone else, please provide us with an affidavit, stamped by a Commissioner of Oaths, from the owner of the residence confirming that you reside with them along with the owner\'s utility bill and ID document.'
+            ],
+            [
+                'name' => 'POA - PO BOX submitted',
+                'department_id' => 4,
+                'body' => 'Kindly resubmit a copy of your proof of residency making sure that all 4 corners of the page are visible and not a PO Box for us to verify your account. The address needs to match the address that is on the system.'
+            ],
+            [
+                'name' => 'Phone call not answered',
+                'department_id' => 4,
+                'body' => 'Please note that we tried contacting you, but could not reach you. Kindly provide us with an appropriate time for one of our consultants to contact you telephonically.'
+            ],
+            [
+                'name' => 'Unregistered E-mail Address',
+                'department_id' => 4,
+                'body' => 'For security reasons, please send this query from the email address that is registered to your AltCoinTrader account so we may be able to assist you.'
+            ],
+            [
+                'name' => 'E-mail change',
+                'department_id' => 4,
+                'body' => 'Kindly be advised that as per our telephonic discussion, we are unable to do an email change on your behalf, however, we require the below for verification purposes for us to escalate this matter for you.
+
+Please provide us with:
+
+- A picture of your ID
+- A PDF copy of your 3 months bank statement showing your account details and your address
+- A picture of you holding your ID next to your face and an affidavit
+- Another picture of yourself holding your ID document next to your face together with a piece of paper with the word AltCoinTrader, e-mail change, and today\'s date. Also, state the reason you changed the email address.
+
+    Kindly be advised that we require the affidavit to state the below :
+
+- Why are you unable to access your old email?
+        - Why are unable to access your Altcoin Trader account?
+        - What you would like us to do to assist you?
+
+        Kindly be advised that we need you to send us a picture of yourself holding your ID next to your face with the affidavit, please.
+
+    Please respond to this same email to avoid creating multiple tickets.'
+            ],
+            [
+                'name' => 'Unauthorized e-mail change',
+                'department_id' => 4,
+                'body' => 'Please note that it appears your email address was compromised as well and we therefore need you to take the necessary steps to secure your email address by setting up a 2-step verification on it and a 2-factor authenticator on your Altcoin Trader account.
+
+For us to assist you by retrieving your account please secure your email address first then further proceed by providing us with the 2 proofs of payments and a bank statement showing the transactions coming out of the bank account that were made to your Altcoin Trader account also we require a picture of yourself holding your Id document next to your face together with a piece of paper with the word AltCoinTrader, unauthorized e-mail change - retrieve account and today\'s date.
+
+    Kindly find the below URL link for steps on how to activate the 2 FA on your Altcoin Trader account once we have managed to get you access to your account, it can also be activated on your email account.'
+            ],
+            [
+                'name' => 'Duplicate Ticket',
+                'department_id' => 4,
+                'body' => 'Kindly be advised that this is classified as a duplicated email as we work according to a ticket system and require all clients to respond to one email only focusing on one ticket number to avoid any confusion, as multiple duplicated emails or tickets will result in spamming your email on our platform.
+
+This ticket will therefore be closed and we will focus on ticket number ACT123456'
+            ],
+            [
+                'name' => 'Unwilling to secure compromised account',
+                'department_id' => 4,
+                'body' => 'Please note that as you have stated you will not enable the 2Factor Authenticator on this account as advised, once we remove the hold on this account we will not be held liable in the future should the account be compromised again.
+
+Please confirm if you still agree to us removing the hold on your account.'
+            ],
+            [
+                'name' => 'Provide us with the ticket number',
+                'department_id' => 4,
+                'body' => 'Please provide us with the ticket number for the e-mail where the requested information was sent for us to further assist you.'
+            ],
+            [
+                'name' => 'Provide us with the TXID',
+                'department_id' => 4,
+                'body' => 'Please kindly state which coin you have deposited and provide us with the Transaction ID for your deposit so we can assist you.'
+            ],
+            [
+                'name' => 'Coins traded away',
+                'department_id' => 4,
+                'body' => 'Please note that we have successfully blocked all access to your Altcoin trader account and your account has been sent through for an audit and investigation to be performed which could take up to 5 working days.
+
+Kindly be advised that as per our analysis, it has been noted that your email address could have been compromised and therefore we need you to take the necessary steps to secure your email address by setting up a 2-step verification on it. This may have occurred while your Gmail account was somewhat compromised as there were no unauthorized password changes detected, which means that your login details could have been compromised through saved passwords malicious websites, or pop-up ads/advertisements you may have clicked on while your Gmail account was active and in use.
+
+Kindly advise more or less what your last trade, withdrawal, and deposit were please as well were your account balance if you do recall them for us to further assess this matter.
+
+Please note that your funds were maliciously diminished on trades selling high and buying low.'
+            ],
+            [
+                'name' => 'Incorrect selfie submitted',
+                'department_id' => 4,
+                'body' => 'Please note that the picture you’ve sent is incorrect.
+Kindly resend a picture of yourself holding your original ID next to your face together with a piece of paper handwritten AltCoinTrader, 2FA Removal, and today\'s date. Make sure that the ID is clear and readable.
+
+    Please make sure that the details ie. Your name, surname, and ID number are visible and not obstructed by your finger or the flash of the camera. Please also ensure that the details in the picture are not flipped around.
+
+    Visit our help center to see an idea of how to take the requested picture
+
+Kindly respond to this same email to avoid creating multiple tickets please.'
+            ],
+            [
+                'name' => 'Multiple accounts opened',
+                'department_id' => 4,
+                'body' => 'Please kindly state if you have more than one account with us.
+
+If yes, please state the e-mail address for the other account, the reasoning behind opening multiple accounts, as well as if you would like to close or keep the account.
+
+Please also state your ID number and attach a copy of your ID document to this email.'
+            ],
+            [
+                'name' => 'What is an IP Address?',
+                'department_id' => 4,
+                'body' => 'An IP address is a unique address that identifies a device on the internet or a local network. IP stands for "Internet Protocol," which is the set of rules governing the format of data sent via the Internet or local network.
+
+In essence, IP addresses are the identifier that allows information to be sent between devices on a network: they contain location information and make devices accessible for communication. The internet needs a way to differentiate between different computers, routers, and websites. IP addresses provide a way of doing so and form an essential part of how the internet works.
+
+The simplest way to check your router’s public IP address is to search “What is my IP address?” on Google. Google will show you the answer at the top of the page.'
+            ],
+            [
+                'name' => 'What is my crypto address?',
+                'department_id' => 4,
+                'body' => 'You can find your desired crypto address by Following these easy steps
+clear
+Step 1. Log onto your www.altcointrader.co.za Please note that for security purposes we need you to provide us with the source of your funds, which is the bank statement of the account from which the deposits were made as well as the proof of payments made to us. account with your username or email address and your password.
+Step 2. In the top menu, click on the "Deposit" menu button.
+
+Step 3. On the deposit page, click on the "Deposit type" drop-down field and select the cryptocurrency type you would like to deposit.
+
+Step 4. If you have not made any deposits to your selected cryptocurrency on your AltCoinTrader account you will be presented with a button "Request deposit address", this, in turn, will generate your own unique AltCoinTrader cryptocurrency deposit address.
+
+Step 5. If you have deposited your selected cryptocurrency on your AltCoinTrader account you will be presented your own unique AltCoinTrader cryptocurrency deposit address in text format or a QR code.'
+            ],
+            [
+                'name' => 'What is my username?',
+                'department_id' => 4,
+                'body' => 'Please note your username is the name that appears at the top right corner of the screen when you click User Menu. You can also check your username on your previous support/log-in emails. For example, the email would say Dear John123/Jane123 and John123/Jane123 would be your username.'
+            ],
+            [
+                'name' => 'Fake Website',
+                'department_id' => 4,
+                'body' => 'Please confirm that you are logging in to the correct AltCoinTrader website and not a sponsored link.
+
+We will not ask you to check in/ log in using your Google account
+
+The official AltCoinTrader website URL is “altcointrader.co.za”. If a link on social media looks suspicious, do not click on it. Legit links to the AltCoinTrader app, Twitter, Instagram, YouTube, and Facebook accounts are available on the website.
+
+Please provide us with a screenshot of the web page that you are attempting to access your account from as this may be a fake site that is used to copy your login information to gain access to your Google account.'
+            ],
+            [
+                'name' => 'The account is password-blocked',
+                'department_id' => 4,
+                'body' => 'Please note that your account has been unblocked
+
+Please note your account will automatically be unblocked 30 minutes after you have entered your password incorrectly.'
+            ],
+            [
+                'name' => 'How to reset your password',
+                'department_id' => 4,
+                'body' => 'Please note that to change your password you have to click on the lost password button on the right-hand side of the screen, this will open a new page that asks for you to enter your registered email address.
+
+Once you have entered this and clicked on the reset password button a link will be sent to the email address that you typed in. Please ensure that the email you type in is the one that you used to register your account with AltCoinTrader.
+
+Once you have received the email click on the link provided in the email. Once you have clicked on this link it will redirect you to AltCoinTraders site and a page that says New Password and Repeat New Password. Please note that once you have entered this and clicked on the button your password will be changed.
+
+Please note that this will be the new password that you use to log into your account.'
+            ],
+            [
+                'name' => 'How to withdraw crypto',
+                'department_id' => 4,
+                'body' => 'Please note that you will get the deposit crypto address of where you want to send your funds. Then you will make sure the funds you want to send are in the same crypto currency for the crypto address you received.
+
+You will then select the withdraw option on the website.
+
+You will then select cryptocurrency.
+
+You will then select the type of cryptocurrency you are sending.
+You will then enter the address in the address field and fill out the amount you would like to send.
+
+You will then select the withdrawal option.
+
+You will then receive a confirmation email for your withdrawal.
+
+Once confirmed your withdrawal will be processed.'
+            ],
+            [
+                'name' => 'Withdrawal made to a fraudulent address',
+                'department_id' => 4,
+                'body' => 'Kindly be advised that your withdrawal has been canceled as (coin) to (address) as it has been blacklisted as a fraudulent address on our site. Please try a different address other than the one you used.'
             ]
         ];
 

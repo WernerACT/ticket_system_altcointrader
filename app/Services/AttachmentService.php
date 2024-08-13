@@ -36,7 +36,7 @@ class AttachmentService
         }
     }
 
-    protected function getFileType($mimeType, $fileName): string
+    public function getFileType($mimeType, $fileName): string
     {
         $extension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 

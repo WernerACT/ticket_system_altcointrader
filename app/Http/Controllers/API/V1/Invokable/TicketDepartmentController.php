@@ -17,7 +17,8 @@ class TicketDepartmentController extends Controller
     {
         $currentDepartmentId = $ticket->department_id;
 
-        $departments = Department::where('id', '!=', $currentDepartmentId)->get();
+        $departments = Department::where('id', '!=', $currentDepartmentId)
+            ->whereNotIn('name', ['ExCo'])->get();
 
         return response()->json([
             'success' => true,

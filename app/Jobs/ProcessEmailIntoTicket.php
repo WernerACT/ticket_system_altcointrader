@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\ValidationException;
 use Throwable;
+use DOMDocument;
 
 class ProcessEmailIntoTicket implements ShouldQueue
 {
@@ -52,15 +53,13 @@ class ProcessEmailIntoTicket implements ShouldQueue
                     throw new ModelNotFoundException('No available agent to assign ticket.');
                 }
 
+                // Clean up the HTML body by removing unnecessary tags and extracting text content
+                $cleanHtmlBody = $this->cleanHtmlBody($this->processCidAttachments($attachmentService));
+
                 $data = [
                     'title' => $this->email['subject'] ?? 'No Subject Provided',
                     'email' => $this->email['from'],
-                    'description' =>
-                        '<br><br>'
-                        . $this->email['body']
-                        . '<br><br>'
-                        . $this->email['html'],
-                        '<br>',
+                    'description' => $cleanHtmlBody,
                     'department_id' => $department->id,
                     'status_id' => 1,
                     'user_id' => $agent->id,
@@ -104,5 +103,60 @@ class ProcessEmailIntoTicket implements ShouldQueue
         } catch (Throwable $e) {
             Log::error("Unexpected error in processing email into ticket: " . $e->getMessage());
         }
+    }
+
+    protected function processCidAttachments(AttachmentService $attachmentService)
+    {
+        $htmlBody = $this->email['html'];
+
+        // Check for CID references in the HTML body
+        if (!empty($this->email['attachments'])) {
+            foreach ($this->email['attachments'] as $attachment) {
+                if (isset($attachment['name'], $attachment['content']) && !empty($attachment['contentId'])) {
+                    // Process the CID attachment as a regular attachment
+                    $fileType = $attachmentService->getFileType($attachment['type'], $attachment['name']);
+                    if ($fileType === 'image') {
+                        // Remove the CID reference and handle as attachment
+                        $cid = trim($attachment['contentId'], '<>');
+                        $htmlBody = str_replace("cid:$cid", '', $htmlBody);
+                        $attachmentService->handleAttachments($this->email, [$attachment]);
+                    }
+                }
+            }
+        }
+
+        return $htmlBody;
+    }
+
+    protected function cleanHtmlBody(string $html): string
+    {
+        $dom = new DOMDocument();
+
+        // Suppress errors due to malformed HTML and load the HTML content
+        @$dom->loadHTML($html, LIBXML_NOERROR | LIBXML_NOWARNING);
+
+        // Remove unwanted tags: style, script, img, etc.
+        $this->removeUnwantedTags($dom, ['style', 'script', 'img', 'head', 'meta', 'link']);
+
+        // Extract the text content from the cleaned DOM
+        $textContent = $this->getTextFromDom($dom);
+
+        return trim($textContent);
+    }
+
+    protected function removeUnwantedTags(DOMDocument $dom, array $tags): void
+    {
+        foreach ($tags as $tag) {
+            $elements = $dom->getElementsByTagName($tag);
+            while ($elements->length > 0) {
+                $elements->item(0)->parentNode->removeChild($elements->item(0));
+            }
+        }
+    }
+
+    protected function getTextFromDom(DOMDocument $dom): string
+    {
+        $body = $dom->getElementsByTagName('body')->item(0);
+        return $body ? strip_tags($dom->saveHTML($body)) : '';
     }
 }

@@ -20,6 +20,9 @@ class ImageTypeSeeder extends Seeder
             ['name' => 'Selfie'],
             ['name' => '2FA Removal Request'],
             ['name' => 'Spam'],
+            ['name' => 'Email Change'],
+            ['name' => 'Account Verification'],
+            ['name' => 'Email Access Lost'],
         ];
 
         DB::table('image_types')->insert($imageTypes);

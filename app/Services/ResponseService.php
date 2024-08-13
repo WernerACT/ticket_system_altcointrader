@@ -13,6 +13,7 @@ class ResponseService
 
         $response = new Response([
             'ticket_id' => $ticket->id,
+            'status_id' => 9,
             'body' => $body,
         ]);
 

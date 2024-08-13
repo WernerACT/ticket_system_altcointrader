@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\TicketCreated;
+use App\Notifications\TicketCreatedNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
@@ -16,6 +17,8 @@ class SendTicketCreatedNotification
      */
     public function handle(TicketCreated $event): void
     {
+        Log::info('TicketCreated event received for ticket ID: ' . $event->ticket->id);
+
         try {
             Notification::send($event->ticket, new TicketCreatedNotification($event->ticket->id));
         } catch (\Exception $e) {

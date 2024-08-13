@@ -18,10 +18,12 @@ class StatusSeeder extends Seeder
                 ['name' => 'New'],
                 ['name' => 'Read'],
                 ['name' => 'In Progress'],
-                ['name' => 'Response Pending'],
+                ['name' => 'Awaiting Client Response'],
                 ['name' => '24 Hour Pre Closed'],
                 ['name' => 'Closed'],
                 ['name' => 'Spam'],
+                ['name' => 'Waiting for Client Response'],
+                ['name' => 'Client Response Received'],
             ];
 
             DB::table('statuses')->insert($statuses);

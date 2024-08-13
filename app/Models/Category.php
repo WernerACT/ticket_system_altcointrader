@@ -11,7 +11,7 @@ class Category extends Model
 {
     protected $fillable = [
         'name',
-        'ticket_id',
+        'department_id',
     ];
 
     public function tickets(): HasMany

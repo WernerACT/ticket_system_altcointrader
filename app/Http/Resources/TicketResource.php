@@ -17,9 +17,8 @@ class TicketResource extends JsonResource
             'description' => $this->description,
             'tickets' => TicketResource::collection($this->whenLoaded('tickets')),
             'opened_at' => $this->opened_at ? $this->opened_at->diffForHumans() : null,
-            'updated_at' => $this->updated_at->diffForHumans(),
-            'created_at' => $this->created_at->diffForHumans(),
-
+            'updated_at' => $this->updated_at ? $this->updated_at->format('Y-m-d H:i:s') : null,
+            'created_at' => $this->created_at ? $this->created_at->format('Y-m-d H:i:s') : null,
             'category' => new CategoryResource($this->whenLoaded('category')),
             'department' => new DepartmentResource($this->whenLoaded('department')),
             'status' => new StatusResource($this->whenLoaded('status')),

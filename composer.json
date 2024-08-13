@@ -17,7 +17,9 @@
         "sunspikes/clamav-validator": "^2.9",
         "tymon/jwt-auth": "^2.1",
         "webklex/laravel-imap": "^5.1",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "ext-dom": "*",
+        "ext-libxml": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.12",

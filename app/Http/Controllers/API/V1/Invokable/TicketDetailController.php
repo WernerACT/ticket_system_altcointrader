@@ -67,7 +67,7 @@ class TicketDetailController extends Controller
 
         $categories = Category::all()->where('department_id', '=', $ticket->department_id);
 
-        $cannedResponses = CannedResponse::with('department')->paginate(10);
+        $cannedResponses = CannedResponse::all()->where('department_id', '=', $ticket->department_id);
 
         return response()->json([
             'success' => true,
