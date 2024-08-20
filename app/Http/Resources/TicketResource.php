@@ -14,6 +14,7 @@ class TicketResource extends JsonResource
             'id' => $this->id,
             'email' => $this->email,
             'reference' => $this->reference,
+            'title' => $this->title,
             'description' => $this->description,
             'tickets' => TicketResource::collection($this->whenLoaded('tickets')),
             'opened_at' => $this->opened_at ? $this->opened_at->diffForHumans() : null,

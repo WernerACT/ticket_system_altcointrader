@@ -59,11 +59,15 @@ class ProcessEmailIntoTicket implements ShouldQueue
                 $data = [
                     'title' => $this->email['subject'] ?? 'No Subject Provided',
                     'email' => $this->email['from'],
-                    'description' => $cleanHtmlBody,
+                    'description' => $cleanHtmlBody ?? 'The message received does not contain any content in the body of the message',
                     'department_id' => $department->id,
                     'status_id' => 1,
                     'user_id' => $agent->id,
                 ];
+
+                if (empty($data['description'])) {
+                    $data['description'] = 'The message received does not contain any valid content in the body of the message';
+                }
 
                 $validatedData = $validationService->validate($data);
 
@@ -107,7 +111,12 @@ class ProcessEmailIntoTicket implements ShouldQueue
 
     protected function processCidAttachments(AttachmentService $attachmentService)
     {
-        $htmlBody = $this->email['html'];
+        $htmlBody = $this->email['html'] ?? '';
+
+        // If HTML body is empty, fallback to plain text body
+        if (empty($htmlBody)) {
+            $htmlBody = $this->email['body'] ?? '';
+        }
 
         // Check for CID references in the HTML body
         if (!empty($this->email['attachments'])) {
@@ -130,6 +139,10 @@ class ProcessEmailIntoTicket implements ShouldQueue
 
     protected function cleanHtmlBody(string $html): string
     {
+        if (empty($html)) {
+            return 'The message received does not contain any content in the body of the message'; // Default message
+        }
+
         $dom = new DOMDocument();
 
         // Suppress errors due to malformed HTML and load the HTML content
@@ -141,7 +154,7 @@ class ProcessEmailIntoTicket implements ShouldQueue
         // Extract the text content from the cleaned DOM
         $textContent = $this->getTextFromDom($dom);
 
-        return trim($textContent);
+        return trim($textContent) ?: 'The message received does not contain any content in the body of the message';
     }
 
     protected function removeUnwantedTags(DOMDocument $dom, array $tags): void

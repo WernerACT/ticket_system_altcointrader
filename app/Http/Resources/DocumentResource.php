@@ -19,7 +19,6 @@ class DocumentResource extends JsonResource
             'name' => $this->name,
             'is_valid' => $this->is_valid,
             'should_delete' => $this->should_delete,
-            'created_at' => $this->created_at->diffForHumans(),
 
             'documentType' => new DocumentTypeResource($this->whenLoaded('documentType')),
         ];

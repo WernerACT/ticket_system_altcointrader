@@ -14,10 +14,10 @@ class DepartmentController extends Controller
 
     public function index()
     {
-        $departments = Department::all()->whereNotIn('name', ['ExCo']);
+        $departments = Department::all()->whereNotIn('name', ['ExCo', 'Technical']);
         return response()->json([
             'success' => true,
-            'departments' => DepartmentResource::collection($departments)
+            'data' => DepartmentResource::collection($departments)
         ]);
     }
 

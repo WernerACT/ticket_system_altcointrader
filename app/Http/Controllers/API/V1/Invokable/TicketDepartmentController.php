@@ -24,6 +24,5 @@ class TicketDepartmentController extends Controller
             'success' => true,
             'data' => DepartmentResource::collection($departments)
         ]);
-
     }
 }

@@ -19,7 +19,7 @@ class AgentsWithDepartmentsController extends Controller
         $ticket->load('department', 'user');
 
         $agents = User::with('department')
-            ->where('name', '!=', 'Frik')
+            ->where('name', '!=', 'Frik') // todo
             ->where('id', '!=', $ticket->user->id)
             ->get();
 

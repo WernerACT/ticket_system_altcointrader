@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\API\V1\Invokable;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DocumentResource;
 use App\Models\Document;
+use App\Models\DocumentType;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -32,10 +34,15 @@ class TicketDocumentController extends Controller
         // Create the data URL format for the PDF
         $pdfSrc = 'data:' . $mimeType . ';base64,' . $base64;
 
+        $documentTypes = DocumentType::all();
+
         // Return the response as JSON
         return response()->json([
             'success' => true,
             'document' => $pdfSrc,
+            'is_valid' => $document->is_valid,
+            'document_type' => $document->documentType,
+            'document_types' => DocumentResource::collection($documentTypes)
         ]);
     }
 }

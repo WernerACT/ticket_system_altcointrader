@@ -12,7 +12,7 @@ class TicketRules
             'description' => ['required', 'string'],
             'department_id' => ['required', 'integer', 'exists:departments,id'],
             'status_id' => ['required', 'integer', 'exists:statuses,id'],
-            'user_id' => ['required', 'integer', 'exists:users,id']
+            'user_id' => ['sometimes', 'integer', 'exists:users,id']
         ];
     }
 }
