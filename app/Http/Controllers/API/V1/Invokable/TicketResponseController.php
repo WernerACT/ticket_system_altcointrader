@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1\Invokable;
 
 use App\Http\Controllers\Controller;
+use App\Models\CannedResponse;
 use App\Models\Response;
 use App\Models\Ticket;
 use App\Mail\TicketResponseMail;
@@ -18,6 +19,10 @@ class TicketResponseController extends Controller
      */
     public function __invoke(Request $request)
     {
+        // Normalize line breaks in the incoming response
+        $normalizedResponse = $this->normalizeLineBreaks($request->body);
+
+        // Save the response to the ticket
         Response::create([
             'user_id' => Auth::id(),
             'ticket_id' => $request->ticket_id,
@@ -32,11 +37,19 @@ class TicketResponseController extends Controller
         $ticket = Ticket::findOrFail($request->ticket_id);
         $oldStatus = $ticket->status;
 
-        $email = $ticket->email; // where I would like to send the email to.
-        $body = $request->body; // the body of the email
+        $email = $ticket->email;
+        $response = $request->body;
 
-        // Send the email
-        Mail::to($email)->queue(new TicketResponseMail($ticket, $body));
+        // Retrieve the canned response after normalizing line breaks in the body
+        $cannedResponse = CannedResponse::whereRaw('REPLACE(REPLACE(body, "\r\n", "\n"), "\r", "\n") = ?', [$normalizedResponse])->first();
+
+        $links = [];
+        if ($cannedResponse) {
+            $links = $cannedResponse->links;
+        }
+
+        // Send the email with the response and optionally include links if required
+        Mail::to($email)->queue(new TicketResponseMail($ticket, $response, $links));
 
         if ($oldStatus->id != $request->status_id) {
             $ticket->update([
@@ -53,6 +66,15 @@ class TicketResponseController extends Controller
 
         return response()->json([
             'success' => true,
+            'links' => $links,
         ]);
+    }
+
+    /**
+     * Normalize line breaks in a given string to '\n'.
+     */
+    protected function normalizeLineBreaks($text)
+    {
+        return preg_replace('/\r\n|\r|\n/', "\n", $text);
     }
 }

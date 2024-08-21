@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Mail\TicketClosedMail;
 use App\Services\TicketAssignmentService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Mail;
 
 class Ticket extends Model
 {
@@ -47,6 +49,20 @@ class Ticket extends Model
                 $user = User::find($ticket->user_id);
                 if ($user) {
                     $ticket->department_id = $user->department_id;
+                }
+            }
+        });
+
+        static::updated(function (Ticket $ticket) {
+            // Check if the status_id was changed
+            if ($ticket->isDirty('status_id')) {
+                // Load the status relationship if not already loaded
+                $ticket->load('status');
+
+                // Check if the new status is "Closed"
+                if ($ticket->status->name == 'Closed') {
+                    // Send the email
+                    Mail::to($ticket->email)->queue(new TicketClosedMail($ticket));
                 }
             }
         });

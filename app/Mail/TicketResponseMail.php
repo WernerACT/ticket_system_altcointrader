@@ -12,17 +12,19 @@ class TicketResponseMail extends Mailable implements ShouldQueue
     use Queueable, SerializesModels;
 
     public $ticket;
-    public $body;
+    public $response;
+    public $links;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($ticket, $body)
+    public function __construct($ticket, $response, $links = [])
     {
         $this->ticket = $ticket;
-        $this->body = $body;
+        $this->response = $response;
+        $this->links = $links;
     }
 
     /**
