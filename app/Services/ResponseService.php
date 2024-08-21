@@ -13,13 +13,21 @@ class ResponseService
 
         $response = new Response([
             'ticket_id' => $ticket->id,
-            'status_id' => 9,
             'body' => $body,
         ]);
 
+        $comment = "The client sent a response";
+
+        app(TicketHistoryService::class)
+            ->recordHistory($ticket->id, $comment);
+
+
+        $ticket->status_id = 9;
+        $ticket->save();
+
         $response->save();
 
-        $comment = "The client sent a response";
+        $comment = "The ticket status was changed to Client Response Received.";
 
         app(TicketHistoryService::class)
             ->recordHistory($ticket->id, $comment);
