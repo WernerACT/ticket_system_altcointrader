@@ -27,8 +27,6 @@
                         <span style="font-size: 10.5pt; color: #242B32;"><b>Have any Questions?</b></span><br/>
                         <span style="font-size: 10.5pt; color: #242B32;"><b>Call us:</b> 011 568 2684</span><br/>
                         <span style="font-size: 10.5pt; color: #242B32;"><b>Mail us:</b> support@altcointrader.co.za</span>
-                        <br/><br/>
-                        <span style="font-size: 9.5pt; color: #242B32;">If you don't want to receive these emails in the future, please <a href="#" style="color: #242B32; text-decoration: none;">unsubscribe</a></span>
                     </p>
                 </td>
             </tr>
