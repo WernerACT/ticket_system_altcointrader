@@ -59,6 +59,4 @@ class CreateTicketFromMailbox extends Command implements Isolatable
             $this->error("An error occurred: " . $e->getMessage());
         }
     }
-
-
 }
