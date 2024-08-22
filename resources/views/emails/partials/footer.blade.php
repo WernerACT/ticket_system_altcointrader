@@ -38,7 +38,7 @@
                             <tr>
                                 <td><a href="https://facebook.com/AltCoinTraderSA" target="_blank"><img src="https://cdn.altcointrader.co.za/media/facebook22x22.jpg" alt="Facebook" width="22" height="22" border="0" /></a></td>
                                 <td width="25">&nbsp;</td>
-                                <td><a href="https://twitter.com/AltCoinTraderSA" target="_blank"><img src="https://cdn.altcointrader.co.za/media/twitter22x22.jpg" alt="Twitter" width="22" height="22" border="0" /></a></td>
+                                <td><a href="https://twitter.com/AltCoinTraderSA" target="_blank"><img src="https://cdn.altcointrader.co.za/media/twitter22x22.jpg" alt="X" width="22" height="22" border="0" /></a></td>
                                 <td width="25">&nbsp;</td>
                                 <td><a href="https://instagram.com/AltCoinTraderSA" target="_blank"><img src="https://cdn.altcointrader.co.za/media/Instagram22x22.jpg" alt="Instagram" width="22" height="22" border="0" /></a></td>
                                 <td width="25">&nbsp;</td>
