@@ -9,7 +9,7 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    <a href="https://play.google.com/store/apps/details?id=co.za.altcointrader"><img src="https://cdn.altcointrader.co.za/media/Googleplay136x46.jpg" alt="Download on Google Play" width="136" height="41" border="0" /></a>
+                                    <a href="https://play.google.com/store/apps/details?id=co.za.altcointrader"><img src="{{ asset('images/googleplay.png') }}" alt="Download on Google Play" height="159" border="0" /></a>
                                 </td>
                                 <td width="30">&nbsp;</td>
                                 <td>
@@ -38,7 +38,7 @@
                             <tr>
                                 <td><a href="https://facebook.com/AltCoinTraderSA" target="_blank"><img src="https://cdn.altcointrader.co.za/media/facebook22x22.jpg" alt="Facebook" width="22" height="22" border="0" /></a></td>
                                 <td width="25">&nbsp;</td>
-                                <td><a href="https://twitter.com/AltCoinTraderSA" target="_blank"><img src="https://cdn.altcointrader.co.za/media/twitter22x22.jpg" alt="X" width="22" height="22" border="0" /></a></td>
+                                <td><a href="https://twitter.com/AltCoinTraderSA" target="_blank"><img src="{{ asset('images/x-logo.png') }}" alt="X" width="22" height="22" border="0" /></a></td>
                                 <td width="25">&nbsp;</td>
                                 <td><a href="https://instagram.com/AltCoinTraderSA" target="_blank"><img src="https://cdn.altcointrader.co.za/media/Instagram22x22.jpg" alt="Instagram" width="22" height="22" border="0" /></a></td>
                                 <td width="25">&nbsp;</td>
