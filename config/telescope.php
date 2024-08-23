@@ -78,6 +78,9 @@ return [
     'middleware' => [
         'web',
         Authorize::class,
+        'auth:sanctum',
+        config('jetstream.auth_session'),
+        'verified',
     ],
 
     /*
