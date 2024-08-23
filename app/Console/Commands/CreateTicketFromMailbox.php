@@ -35,7 +35,21 @@ class CreateTicketFromMailbox extends Command implements Isolatable
             $messages = $mailboxService->getUnreadMessages();
 
             foreach ($messages as $message) {
+                $attachments = $message->getAttachments()->toArray();
 
+                // Check if any attachment exceeds 8MB (8 * 1024 * 1024 bytes)
+                $largeAttachment = array_filter($attachments, function ($attachment) {
+                    return $attachment->getSize() > (8 * 1024 * 1024);
+                });
+
+                if (!empty($largeAttachment)) {
+                    // Move the email to the "temp" folder
+                    $this->moveMessageToFolder($message, 'temp');
+                    $this->info("Moved email with subject '{$message->getSubject()}' to the 'temp' folder due to large attachment.");
+                    continue;
+                }
+
+                // Proceed with normal processing if no large attachments are found
                 $email = [
                     'subject' => $message->getSubject()->toString(),
                     'from' => $message->getFrom()[0]->mail,
@@ -50,7 +64,7 @@ class CreateTicketFromMailbox extends Command implements Isolatable
                             'content' => base64_encode($attachment->getContent()),
                             'size' => $attachment->getSize()
                         ];
-                    }, $message->getAttachments()->toArray()),
+                    }, $attachments),
                 ];
 
                 ProcessEmailIntoTicket::dispatch($email);
@@ -59,4 +73,19 @@ class CreateTicketFromMailbox extends Command implements Isolatable
             $this->error("An error occurred: " . $e->getMessage());
         }
     }
+
+    /**
+     * Move a message to a different folder.
+     *
+     * @param \Webklex\PHPIMAP\Message $message
+     * @param string $folderName
+     * @return void
+     */
+    protected function moveMessageToFolder($message, $folderName): void
+    {
+        // Assuming you have a client instance in your MailboxService
+        $folder = $message->getClient()->getFolder($folderName);
+        $message->move($folder->path);
+    }
+
 }
