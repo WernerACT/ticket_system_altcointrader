@@ -37,18 +37,6 @@ class CreateTicketFromMailbox extends Command implements Isolatable
             foreach ($messages as $message) {
                 $attachments = $message->getAttachments()->toArray();
 
-                // Check if any attachment exceeds 8MB (8 * 1024 * 1024 bytes)
-                $largeAttachment = array_filter($attachments, function ($attachment) {
-                    return $attachment->getSize() > (8 * 1024 * 1024);
-                });
-
-                if (!empty($largeAttachment)) {
-                    // Move the email to the "temp" folder
-                    $this->moveMessageToFolder($message, 'temp');
-                    $this->info("Moved email with subject '{$message->getSubject()}' to the 'temp' folder due to large attachment.");
-                    continue;
-                }
-
                 // Proceed with normal processing if no large attachments are found
                 $email = [
                     'subject' => $message->getSubject()->toString(),

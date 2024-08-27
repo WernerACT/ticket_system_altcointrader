@@ -6,6 +6,10 @@
         <table class="MsoNormalTable" style="width: 550.0pt;" border="0" width="100%" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
+                    <td>
+
+                    </td>
+                    <td></td>
                     <td bgcolor="#ffffff" align="left" style="padding: 10px 15px 0 15px;">
                         <p>Dear AltCoinTrader User,</p>
 
