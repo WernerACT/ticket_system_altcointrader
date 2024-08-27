@@ -16,7 +16,7 @@ class ResponseResource extends JsonResource
         return [
             'id' => $this->id,
             'body' => $this->body,
-            'created_at' => $this->created_at->diffForHumans(),
+            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'from' => $isUserResponse ? $this->user->name : $this->ticket->email, // Default to ticket email if no user
             'position' => $isUserResponse ? 'right' : 'left', // Position based on response origin
             'user' => new UserResource($userLoaded),

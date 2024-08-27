@@ -6,7 +6,7 @@
         <table class="MsoNormalTable" style="width: 550.0pt;" border="0" width="100%" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
-                    <td bgcolor="#ffffff" align="left" style="padding: 10px 15px 10px 15px; font-family: Helvetica, Arial, sans-serif; font-size: 14px; letter-spacing: .5px; font-weight: 100; line-height: 21px;">
+                    <td bgcolor="#ffffff" align="left" style="padding: 10px 15px 0 15px;">
                         <p>Dear AltCoinTrader User,</p>
 
                         <p>Your ticket with Reference ID <strong>{{$ticket->reference}}</strong> has been closed.</p>

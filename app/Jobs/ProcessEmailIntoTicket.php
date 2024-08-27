@@ -170,6 +170,70 @@ class ProcessEmailIntoTicket implements ShouldQueue
     protected function getTextFromDom(DOMDocument $dom): string
     {
         $body = $dom->getElementsByTagName('body')->item(0);
-        return $body ? strip_tags($dom->saveHTML($body)) : '';
+        $textContent = $body ? strip_tags($dom->saveHTML($body)) : '';
+
+        // Replace line breaks and new lines with #ACTLINEBREAK#
+        $textContent = str_replace(["\r\n", "\r", "\n"], ' #ACTLINEBREAK# ', $textContent);
+
+        // Clean up the text using the cleanText function
+        $textContent = $this->cleanText($textContent);
+
+        // Remove any extra spaces, non-breaking spaces, or multiple #ACTLINEBREAK# placeholders
+        $textContent = preg_replace('/\s+/', ' ', $textContent);  // Collapse multiple spaces into one
+        $textContent = str_replace('&nbsp;', ' ', $textContent);  // Replace &nbsp; with a regular space
+        $textContent = preg_replace('/\s*#ACTLINEBREAK#\s*/', '#ACTLINEBREAK#', $textContent); // Ensure no surrounding spaces around #ACTLINEBREAK#
+
+        // Collapse sequences of #ACTLINEBREAK# into a maximum of two consecutive ones
+        $textContent = preg_replace('/(#ACTLINEBREAK#){3,}/', '#ACTLINEBREAK##ACTLINEBREAK#', $textContent);
+
+        return trim($textContent);
     }
+
+    public static function cleanText($input, $max = 20000   )
+    {
+        $result = trim($input);
+
+        if (strlen($result) > $max) {
+            $result = "";
+        }
+
+        // Replace UTF-8 characters
+        $result = str_replace(
+            array("\xe2\x80\x98", "\xe2\x80\x99", "\xe2\x80\x9c", "\xe2\x80\x9d", "\xe2\x80\x93", "\xe2\x80\x94", "\xe2\x80\xa6"),
+            array("'", "'", '"', '"', '-', '--', '...'),
+            $result
+        );
+
+        // Replace Windows-1252 equivalents
+        $result = str_replace(
+            array(chr(145), chr(146), chr(147), chr(148), chr(150), chr(151), chr(133), chr(160), chr(187)),
+            array("'", "'", '"', '"', '-', '--', '...', ' ', ' '),
+            $result
+        );
+
+        // Reject overly long 2-byte sequences and characters above U+10000
+        $result = preg_replace(
+            '/[\x00-\x08\x10\x0B\x0C\x0E-\x19\x7F]'.
+            '|[\x00-\x7F][\x80-\xBF]+'.
+            '|([\xC0\xC1]|[\xF0-\xFF])[\x80-\xBF]*'.
+            '|[\xC2-\xDF]((?![\x80-\xBF])|[\x80-\xBF]{2,})'.
+            '|[\xE0-\xEF](([\x80-\xBF](?![\x80-\xBF]))|(?![\x80-\xBF]{2})|[\x80-\xBF]{3,})/S',
+            '',
+            $result
+        );
+
+        // Reject overly long 3-byte sequences and UTF-16 surrogates
+        $result = preg_replace(
+            '/\xE0[\x80-\x9F][\x80-\xBF]'.
+            '|\xED[\xA0-\xBF][\x80-\xBF]/S',
+            '',
+            $result
+        );
+
+        // Remove whitespace
+        $result = trim(preg_replace('/\s+/', ' ', $result));
+
+        return $result;
+    }
+
 }

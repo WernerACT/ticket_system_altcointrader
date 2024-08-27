@@ -1,54 +1,68 @@
 <tr>
-    <td style="padding: 25.0pt 11.25pt 25.0pt 11.25pt;">
-        <table class="MsoNormalTable" style="width: 100.0%;" border="0" width="100%" cellspacing="0" cellpadding="0">
+    <td style="padding: 0 11.25pt 0 11.25pt;">
+        <table style="width: 100.0%;">
             <tbody>
-            <tr>
-                <td style="padding: 0cm 0cm 30.0pt 0cm;">
-                    <div align="center">
-                        <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0">
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <a href="https://play.google.com/store/apps/details?id=co.za.altcointrader"><img src="{{ asset('images/googleplay.png') }}" alt="Download on Google Play" height="159" border="0" /></a>
-                                </td>
-                                <td width="30">&nbsp;</td>
-                                <td>
-                                    <a href="https://apps.apple.com/za/app/altcointrader-bitcoin-crypto/id1499787588?mt=8"><img src="https://cdn.altcointrader.co.za/media/apple136x46.jpg" alt="Download on the App Store" width="136" height="41" border="0" /></a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td style="padding: 0cm 0cm 10.0pt 0cm;">
-                    <p style="text-align: center; line-height: 15.0pt;" align="center">
-                        <span style="font-size: 10.5pt; color: #242B32;"><b>Have any Questions?</b></span><br/>
-                        <span style="font-size: 10.5pt; color: #242B32;"><b>Call us:</b> 011 568 2684</span><br/>
-                        <span style="font-size: 10.5pt; color: #242B32;"><b>Mail us:</b> support@altcointrader.co.za</span>
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div align="center">
-                        <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0">
-                            <tbody>
-                            <tr>
-                                <td><a href="https://facebook.com/AltCoinTraderSA" target="_blank"><img src="https://cdn.altcointrader.co.za/media/facebook22x22.jpg" alt="Facebook" width="22" height="22" border="0" /></a></td>
-                                <td width="25">&nbsp;</td>
-                                <td><a href="https://twitter.com/AltCoinTraderSA" target="_blank"><img src="{{ asset('images/x-logo.png') }}" alt="X" width="22" height="22" border="0" /></a></td>
-                                <td width="25">&nbsp;</td>
-                                <td><a href="https://instagram.com/AltCoinTraderSA" target="_blank"><img src="https://cdn.altcointrader.co.za/media/Instagram22x22.jpg" alt="Instagram" width="22" height="22" border="0" /></a></td>
-                                <td width="25">&nbsp;</td>
-                                <td><a href="https://www.youtube.com/AltCoinTraderSA" target="_blank"><img src="https://cdn.altcointrader.co.za/media/youTube22x22.jpg" alt="YouTube" width="22" height="22" border="0" /></a></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </td>
-            </tr>
+                <div id="contacts">
+                    <tr style="padding: 0 0 0 0">
+                        <td>
+                            <hr style="border: none; border-top: 1px solid #E5E5E5;">
+                            <p style="text-align: center;">
+                                Visit Our <a href="https://altcointrader.zendesk.com/hc/en-gb" style="text-decoration: none;">Help Center</a>.
+                            </p>
+
+                            <p style="text-align: center;">
+                                <span><b>Need further assistance?</b></span>
+                                <br/>
+                                <span><b>Call us:</b> 011 568 2684</span>
+                                <br/>
+                            </p>
+                            <p style="text-align: center;">
+                                <span>
+                                    <a style="text-decoration: none;" href="https://facebook.com/AltCoinTraderSA" target="_blank">
+                                        <img src="{{ asset('images/social/facebook.svg') }}" alt="Facebook" width="22" height="22" />
+                                    </a>
+                                </span>
+                                <span style="text-decoration: none; color: white;" width="30">&nbsp;</span>
+                                <span>
+                                    <a style="text-decoration: none;" href="https://twitter.com/AltCoinTraderSA" target="_blank">
+                                        <img src="{{ asset('images/social/x-twitter.svg') }}" alt="X" width="22" height="22" />
+                                    </a>
+                                </span>
+                                <span style="text-decoration: none; color: white;" width="30">&nbsp;</span>
+                                <span>
+                                    <a style="text-decoration: none;" href="https://instagram.com/AltCoinTraderSA" target="_blank">
+                                        <img src="{{ asset('images/social/instagram.svg') }}" alt="Instagram" width="22" height="22"  />
+                                    </a>
+                                </span>
+                                <span style="text-decoration: none; color: white;" width="30">&nbsp;</span>
+                                <span>
+                                    <a style="text-decoration: none;" href="https://www.youtube.com/AltCoinTraderSA" target="_blank">
+                                        <img src="{{ asset('images/social/youtube.svg') }}" alt="YouTube" width="22" height="22"  />
+                                    </a>
+                                </span>
+                            </p>
+                            <p style="text-align: center;">
+                                <span>
+                                    <a style="text-decoration: none;" href="https://play.google.com/store/apps/details?id=co.za.altcointrader">
+                                        <img src="{{ asset('images/apps/google.png') }}" alt="Download on Google Play" height="25"  />
+                                    </a>
+                                </span>
+                                <span style="text-decoration: none; color: white;" width="30">&nbsp;</span>
+                                <span>
+                                    <a style="text-decoration: none;" href="https://apps.apple.com/za/app/altcointrader-bitcoin-crypto/id1499787588?mt=8">
+                                        <img src="{{ asset('images/apps/apple.png') }}" alt="Download on App Store" height="25"  />
+                                    </a>
+                                </span>
+                                <span style="text-decoration: none; color: white;" width="30">&nbsp;</span>
+                                <span>
+                                    <a style="text-decoration: none;" href="https://appgallery.huawei.com/#/app/C103314025">
+                                        <img src="{{ asset('images/apps/huawei.png') }}" alt="Huawei App" height="25"  />
+                                    </a>
+                                </span>
+                            </p>
+                        </td>
+                    </tr>
+                </div>
             </tbody>
         </table>
     </td>
