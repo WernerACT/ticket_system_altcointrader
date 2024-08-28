@@ -43,7 +43,7 @@
                         <p style="text-align: center;">
                             <span>
                                 <a style="text-decoration: none;" href="https://play.google.com/store/apps/details?id=co.za.altcointrader">
-                                    <img src="{{ secure_asset('images/apps/google_custom.png') }}" alt="Download on Google Play" style="width: 22px; height: 22px;"  />
+                                    <img src="{{ secure_asset('images/apps/google_custom.png') }}" alt="Download on Google Play" style="height: 25px;"  />
                                 </a>
                             </span>
                             <span style="text-decoration: none; color: white;" width="30">&nbsp;</span>

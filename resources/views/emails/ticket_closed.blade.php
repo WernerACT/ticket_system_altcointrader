@@ -17,8 +17,8 @@
                                 <p>We hope that your issue has been resolved. If you have any further questions, please do not hesitate to contact us.</p>
                                 <p><b>How did we do?</b></p>
                                 <p>Review your recent support experience from us and stand a chance to win R1000 in crypto.</p>
-                                <p>Every month we will randomly choose a lucky winner regardless of your review either <b>Happy</b> or <b>Sad</b>.</p>
-                                <p>T's and C's Apply.</p>
+                                <p>Every month we will randomly choose a lucky winner regardless of your review either <b>Happy</b> or <b>Sad</b>. <br>T's and C's Apply.</p>
+
                             </td>
                         </tr>
                     </table>
