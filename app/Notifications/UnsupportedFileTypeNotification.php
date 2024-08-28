@@ -22,7 +22,7 @@ class UnsupportedFileTypeNotification extends Notification
     public function toMail($notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Email Received by AltCoinTrader with an unsupported attachment')
+            ->subject('Unsupported File | AltCoinTrader Support')
             ->view(
                 'emails.unsupported_file_type',
                 ['fileType' => $this->fileType]

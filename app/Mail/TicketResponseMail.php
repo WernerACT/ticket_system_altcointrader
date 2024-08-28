@@ -34,7 +34,7 @@ class TicketResponseMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->subject("AltCoinTrader Support Ticket {$this->ticket->reference} Response")
+        return $this->subject("{$this->ticket->reference} Response | AltCoinTrader Support")
             ->view('emails.ticket_response');
     }
 }

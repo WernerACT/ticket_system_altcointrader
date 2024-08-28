@@ -44,19 +44,19 @@
                             <p style="text-align: center;">
                                 <span>
                                     <a style="text-decoration: none;" href="https://play.google.com/store/apps/details?id=co.za.altcointrader">
-                                        <img src="{{ asset('images/apps/google.png') }}" alt="Download on Google Play" height="25"  />
+                                        <img src="{{ asset('images/apps/google_custom.png') }}" alt="Download on Google Play" height="25"  />
                                     </a>
                                 </span>
                                 <span style="text-decoration: none; color: white;" width="30">&nbsp;</span>
                                 <span>
                                     <a style="text-decoration: none;" href="https://apps.apple.com/za/app/altcointrader-bitcoin-crypto/id1499787588?mt=8">
-                                        <img src="{{ asset('images/apps/apple.png') }}" alt="Download on App Store" height="25"  />
+                                        <img src="{{ asset('images/apps/apple_custom.png') }}" alt="Download on App Store" height="25"  />
                                     </a>
                                 </span>
                                 <span style="text-decoration: none; color: white;" width="30">&nbsp;</span>
                                 <span>
                                     <a style="text-decoration: none;" href="https://appgallery.huawei.com/#/app/C103314025">
-                                        <img src="{{ asset('images/apps/huawei.png') }}" alt="Huawei App" height="25"  />
+                                        <img src="{{ asset('images/apps/huawei_custom.png') }}" alt="Huawei App" height="25"  />
                                     </a>
                                 </span>
                             </p>

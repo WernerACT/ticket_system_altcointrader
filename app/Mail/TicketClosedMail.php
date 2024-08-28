@@ -30,7 +30,7 @@ class TicketClosedMail extends Mailable
      */
     public function build()
     {
-        return $this->subject("AltCoinTrader Support Ticket {$this->ticket->reference} Closed")
+        return $this->subject("{$this->ticket->reference} Closed | AltCoinTrader Support")
             ->view('emails.ticket_closed');
     }
 

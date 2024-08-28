@@ -60,7 +60,7 @@ class TicketController extends Controller
         }
 
         // Paginate the results
-        $tickets = $query->paginate(20);
+        $tickets = $query->paginate(25);
 
         // Get the ticket IDs for additional use
         $ticketIds = $tickets->getCollection()->pluck('id')->all();
