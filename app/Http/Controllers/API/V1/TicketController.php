@@ -69,6 +69,14 @@ class TicketController extends Controller
             'success' => true,
             'tickets' => new TicketResourceCollection($tickets),
             'ticket_ids' => $ticketIds,
+            'pagination' => [
+                'total' => $tickets->total(),
+                'per_page' => $tickets->perPage(),
+                'current_page' => $tickets->currentPage(),
+                'last_page' => $tickets->lastPage(),
+                'next_page_url' => $tickets->nextPageUrl(),
+                'prev_page_url' => $tickets->previousPageUrl(),
+            ],
         ];
     }
 
