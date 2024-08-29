@@ -16,6 +16,7 @@ use App\Http\Controllers\API\V1\Invokable\ListDepartmentsController;
 use App\Http\Controllers\API\V1\Invokable\ListStatusController;
 use App\Http\Controllers\API\V1\Invokable\ListTicketNotes;
 use App\Http\Controllers\API\V1\Invokable\ListTicketResponses;
+use App\Http\Controllers\API\V1\Invokable\NavigateTicketsController;
 use App\Http\Controllers\API\V1\Invokable\TicketCategoryController;
 use App\Http\Controllers\API\V1\Invokable\TicketDepartmentController;
 use App\Http\Controllers\API\V1\Invokable\TicketDetailController;
@@ -68,6 +69,7 @@ Route::prefix('/v1')
         Route::post('/assign/category', AssignCategoryController::class);
         Route::post('/user/tickets', UserHistoryController::class);
         Route::post('/image/update/{image}', UpdateImageController::class);
+        Route::post('/navigate/tickets', NavigateTicketsController::class);
         Route::post('/document/update/{document}', UpdateDocumentController::class);
         Route::apiResource('canned-responses', CannedResponsesController::class);
         Route::apiResource('departments', DepartmentController::class);

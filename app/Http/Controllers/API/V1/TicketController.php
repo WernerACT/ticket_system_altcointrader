@@ -29,34 +29,62 @@ class TicketController extends Controller
         } else {
             // Filter by start date
             if ($request->filled('start_date')) {
-                $query->where('created_at', '>=', $request->start_date);
+                $query->where('tickets.created_at', '>=', $request->start_date);
             }
 
             // Filter by end date
             if ($request->filled('end_date')) {
                 $endDate = $request->end_date . " 23:59:59";
-                $query->where('created_at', '<=', $endDate);
+                $query->where('tickets.created_at', '<=', $endDate);
             }
 
             // Filter by department_id if not 0
             if ($request->filled('department_id') && $request->department_id != 0) {
-                $query->where('department_id', $request->department_id);
+                $query->where('tickets.department_id', $request->department_id);
             }
 
             // Filter by status_id if not 0
             if ($request->filled('status_id') && $request->status_id != 0) {
-                $query->where('status_id', $request->status_id);
+                $query->where('tickets.status_id', $request->status_id);
             }
 
             // Filter by category_id if not 0
             if ($request->filled('category_id') && $request->category_id != 0) {
-                $query->where('category_id', $request->category_id);
+                $query->where('tickets.category_id', $request->category_id);
             }
 
             // Filter by user_id if show_all_tickets is 0
             if ($request->show_all_tickets == 0) {
-                $query->where('user_id', $user->id);
+                $query->where('tickets.user_id', $user->id);
             }
+        }
+
+        // Handle sorting
+        $orderBy = $request->input('sort_by', 'created'); // Default order_by to 'created'
+        $order = $request->input('order', 'asc'); // Default order to 'asc'
+
+        switch ($orderBy) {
+            case 'subject':
+                $query->orderBy('tickets.title', $order);
+                break;
+            case 'email':
+                $query->orderBy('tickets.email', $order);
+                break;
+            case 'department':
+                $query->join('departments', 'tickets.department_id', '=', 'departments.id')
+                    ->orderBy('departments.name', $order);
+                break;
+            case 'status':
+                $query->join('statuses', 'tickets.status_id', '=', 'statuses.id')
+                    ->orderBy('statuses.name', $order);
+                break;
+            case 'modified':
+                $query->orderBy('tickets.updated_at', $order);
+                break;
+            case 'created':
+            default:
+                $query->orderBy('tickets.created_at', $order);
+                break;
         }
 
         // Paginate the results
