@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schedule;
 
 
-Schedule::command('import:email' )->everyMinute();
+Schedule::command('import:email' )->everyThirtySeconds();
 Schedule::command('app:close-stale-tickets' )->hourly();
 Schedule::command('uploads:process-uploads' )->everyTenSeconds();
 

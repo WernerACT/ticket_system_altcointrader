@@ -9,7 +9,6 @@ use Illuminate\Contracts\Console\Isolatable;
 use App\Services\MailboxService;
 
 
-
 class CreateTicketFromMailbox extends Command implements Isolatable
 {
     /**
@@ -35,13 +34,16 @@ class CreateTicketFromMailbox extends Command implements Isolatable
             $messages = $mailboxService->getUnreadMessages();
 
             foreach ($messages as $message) {
+
+                $rawBody = $this->handleFormatFlowed($message->getRawBody());
+
                 $attachments = $message->getAttachments()->toArray();
 
                 // Proceed with normal processing if no large attachments are found
                 $email = [
                     'subject' => $message->getSubject()->toString(),
                     'from' => $message->getFrom()[0]->mail,
-                    'body' => $message->getTextBody(),
+                    'body' => $rawBody,
                     'html' => $message->getHTMLBody(),
                     'date' => $message->getDate()->toDate(),
                     'messageId' => $message->getUid(),
@@ -62,18 +64,15 @@ class CreateTicketFromMailbox extends Command implements Isolatable
         }
     }
 
-    /**
-     * Move a message to a different folder.
-     *
-     * @param \Webklex\PHPIMAP\Message $message
-     * @param string $folderName
-     * @return void
-     */
-    protected function moveMessageToFolder($message, $folderName): void
+    protected function handleFormatFlowed(string $text): string
     {
-        // Assuming you have a client instance in your MailboxService
-        $folder = $message->getClient()->getFolder($folderName);
-        $message->move($folder->path);
+        // Replace soft line breaks (which are indicated by a newline followed by a space)
+        $text = preg_replace('/(?<!\r\n)\r\n(?!\r\n)/', '', $text);
+
+        // Also handle any other cases of soft breaks followed by a space
+        $text = preg_replace('/\n /', '', $text);
+
+        return $text;
     }
 
 }

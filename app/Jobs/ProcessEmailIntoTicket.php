@@ -137,11 +137,24 @@ class ProcessEmailIntoTicket implements ShouldQueue
         return $htmlBody;
     }
 
+    protected function removeUnwantedTags(DOMDocument $dom, array $tags): void
+    {
+        foreach ($tags as $tag) {
+            $elements = $dom->getElementsByTagName($tag);
+            while ($elements->length > 0) {
+                $elements->item(0)->parentNode->removeChild($elements->item(0));
+            }
+        }
+    }
+
     protected function cleanHtmlBody(string $html): string
     {
         if (empty($html)) {
             return 'The message received does not contain any content in the body of the message'; // Default message
         }
+
+        // Convert the HTML to UTF-8 if it's not already
+        $html = mb_convert_encoding($html, 'UTF-8', 'auto');
 
         $dom = new DOMDocument();
 
@@ -154,34 +167,60 @@ class ProcessEmailIntoTicket implements ShouldQueue
         // Extract the text content from the cleaned DOM
         $textContent = $this->getTextFromDom($dom);
 
+        // Remove the "Â" character and unwanted tags
+        $textContent = str_replace('Â', '', strip_tags($textContent));
+
+        // Limit consecutive #ACTLINEBREAK# placeholders to a maximum of three
+        $textContent = $this->limitConsecutiveLineBreaks($textContent);
+
+        // Handle special case for Gmail responses
+        $textContent = $this->removePreviousGmailResponse($textContent);
+
         return trim($textContent) ?: 'The message received does not contain any content in the body of the message';
     }
 
-    protected function removeUnwantedTags(DOMDocument $dom, array $tags): void
+    protected function limitConsecutiveLineBreaks(string $text): string
     {
-        foreach ($tags as $tag) {
-            $elements = $dom->getElementsByTagName($tag);
-            while ($elements->length > 0) {
-                $elements->item(0)->parentNode->removeChild($elements->item(0));
-            }
-        }
+        // Replace three or more #ACTLINEBREAK# placeholders (with possible spaces or line breaks between them) with exactly two
+        return preg_replace('/(#ACTLINEBREAK#\s*){3,}/', '#ACTLINEBREAK##ACTLINEBREAK##ACTLINEBREAK#', $text);
+    }
+
+    protected function removePreviousGmailResponse(string $text): string
+    {
+        // Regular expression to match "On Mon,", "On Tue,", ..., "On Sun," and everything that follows
+        $pattern = '/On (Mon|Tue|Wed|Thu|Fri|Sat|Sun),.*$/s';
+
+        // Replace the matched pattern with an empty string
+        return preg_replace($pattern, '', $text);
     }
 
     protected function getTextFromDom(DOMDocument $dom): string
     {
         $body = $dom->getElementsByTagName('body')->item(0);
-        $textContent = $body ? strip_tags($dom->saveHTML($body)) : '';
+        $textContent = $body ? $dom->saveHTML($body) : '';
+
+        // Convert to UTF-8 to handle any non-UTF-8 text
+        $textContent = mb_convert_encoding($textContent, 'UTF-8', 'auto');
+
+        // Normalize line breaks to handle format=flowed
+        $textContent = $this->normalizeLineBreaks($textContent);
+
+        // Replace non-breaking spaces with a regular space
+        $textContent = str_replace("\xC2\xA0", ' ', $textContent);  // Handle non-breaking spaces
+        $textContent = str_replace('&nbsp;', ' ', $textContent);    // Handle encoded non-breaking spaces
+
+        // Replace <br> tags with #ACTLINEBREAK#
+        $textContent = preg_replace('/<br\s*\/?>/i', ' #ACTLINEBREAK##ACTLINEBREAK# ', $textContent);
 
         // Replace line breaks and new lines with #ACTLINEBREAK#
-        $textContent = str_replace(["\r\n", "\r", "\n"], ' #ACTLINEBREAK# ', $textContent);
+        $textContent = str_replace(["\r\n", "\r", "\n"], ' #ACTLINEBREAK##ACTLINEBREAK# ', $textContent);
 
         // Clean up the text using the cleanText function
         $textContent = $this->cleanText($textContent);
 
         // Remove any extra spaces, non-breaking spaces, or multiple #ACTLINEBREAK# placeholders
         $textContent = preg_replace('/\s+/', ' ', $textContent);  // Collapse multiple spaces into one
-        $textContent = str_replace('&nbsp;', ' ', $textContent);  // Replace &nbsp; with a regular space
-        $textContent = preg_replace('/\s*#ACTLINEBREAK#\s*/', '#ACTLINEBREAK#', $textContent); // Ensure no surrounding spaces around #ACTLINEBREAK#
+        $textContent = preg_replace('/\s*#ACTLINEBREAK#\s*/', '#ACTLINEBREAK##ACTLINEBREAK#', $textContent); // Ensure no surrounding spaces around #ACTLINEBREAK#
 
         // Collapse sequences of #ACTLINEBREAK# into a maximum of two consecutive ones
         $textContent = preg_replace('/(#ACTLINEBREAK#){3,}/', '#ACTLINEBREAK##ACTLINEBREAK#', $textContent);
@@ -189,7 +228,7 @@ class ProcessEmailIntoTicket implements ShouldQueue
         return trim($textContent);
     }
 
-    public static function cleanText($input, $max = 20000   )
+    public static function cleanText($input, $max = 20000)
     {
         $result = trim($input);
 
@@ -234,6 +273,17 @@ class ProcessEmailIntoTicket implements ShouldQueue
         $result = trim(preg_replace('/\s+/', ' ', $result));
 
         return $result;
+    }
+
+    protected function normalizeLineBreaks(string $text): string
+    {
+        // Remove soft line breaks (replace "\n" followed by a space or empty with a space)
+        $text = preg_replace('/\n\s*/', ' ', $text);
+
+        // Remove other single line breaks that are not followed by a newline (paragraph break)
+        $text = preg_replace('/(?<!\n)\n(?!\n)/', ' ', $text);
+
+        return $text;
     }
 
 }
