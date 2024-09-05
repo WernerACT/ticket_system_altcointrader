@@ -17,32 +17,26 @@ class ListDepartmentsController extends Controller
         $allTickets = $request->all_tickets;
         $user = Auth::user();
 
-        // Base query to get departments with a count of tickets within the date range
-        $departmentsQuery = Department::withCount(['tickets' => function ($query) use ($startDate, $endDate, $allTickets, $user) {
-            $query->whereBetween('created_at', [$startDate, $endDate])
-                ->whereDoesntHave('status', function ($query) {
-                    $query->whereIn('name', ['Closed', 'Spam']);
-                });
+        // Base query to get all departments except "Technical" and "Exco", and count tickets created within the date range
+        $departmentsQuery = Department::whereNotIn('name', ['Technical', 'Exco'])
+            ->withCount(['tickets' => function ($query) use ($startDate, $endDate, $allTickets, $user) {
+                $query->whereBetween('created_at', [$startDate, $endDate]);
 
-            // If $allTickets is 0, limit the ticket count to those where tickets belong to the authenticated user
-            if ($allTickets == 0 && $user) {
-                $query->where('user_id', $user->id);
-            }
-        }]);
+                // If $allTickets is 0, limit the ticket count to those where tickets belong to the authenticated user
+                if ($allTickets == 0 && $user) {
+                    $query->where('user_id', $user->id);
+                }
+            }]);
 
         // If $allTickets is 0, limit the departments to those where tickets belong to the authenticated user
         if ($allTickets == 0 && $user) {
-            $departmentsQuery->whereHas('tickets', function ($query) use ($startDate, $endDate, $user) {
+            $departmentsQuery->orWhereHas('tickets', function ($query) use ($startDate, $endDate, $user) {
                 $query->whereBetween('created_at', [$startDate, $endDate])
                     ->where('user_id', $user->id);
             });
-        } else {
-            // Ensure we respect the date range even when not filtering by user
-            $departmentsQuery->whereHas('tickets', function ($query) use ($startDate, $endDate) {
-                $query->whereBetween('created_at', [$startDate, $endDate]);
-            });
         }
 
+        // Get all departments excluding "Technical" and "Exco"
         $departments = $departmentsQuery->get();
 
         // Sort departments with the user's department first if authenticated

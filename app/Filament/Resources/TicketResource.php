@@ -64,6 +64,7 @@ class TicketResource extends Resource
                 Tables\Columns\TextColumn::make('email')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('reference')->searchable()->sortable(),
                 Tables\Columns\TextColumn::make('created_at')->dateTime()->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('updated_at')->dateTime()->searchable()->sortable(),
                 SelectColumn::make('department_id')
                     ->label('Department')
                     ->options(Department::all()->pluck('name', 'id')->toArray())

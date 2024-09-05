@@ -7,7 +7,6 @@
                 <tr>
                     <td style="padding: 10px 15px 0 15px;">
                         <p>Dear AltCoinTrader User,</p>
-
                         <p>Your ticket with ticket number <strong>{{$ticket->reference}}</strong> has been created.</p>
 
                         <table>
@@ -26,7 +25,6 @@
                                 </tr>
                             </tbody>
                         </table>
-
                         <p>We will attend to your ticket as soon as possible.</p>
                     </td>
                 </tr>

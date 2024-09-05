@@ -41,7 +41,7 @@ class TicketResponseController extends Controller
         $response = $request->body;
 
         // Retrieve the canned response after normalizing line breaks in the body
-        $cannedResponse = CannedResponse::whereRaw('REPLACE(REPLACE(body, "\r\n", "\n"), "\r", "\n") = ?', [$normalizedResponse])->first();
+        $cannedResponse = CannedResponse::where('id', $request->response_id)->first();
 
         $links = [];
         if ($cannedResponse) {

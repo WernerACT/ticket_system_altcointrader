@@ -61,7 +61,6 @@ class Department extends Model
             }]);
     }
 
-
     public function cannedResponses(){
         return $this->hasMany(CannedResponse::class);
     }

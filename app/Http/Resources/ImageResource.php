@@ -19,7 +19,7 @@ class ImageResource extends JsonResource
             'name' => $this->name,
             'is_valid' => $this->is_valid,
             'should_delete' => $this->should_delete,
-            'created_at' => $this->created_at->diffForHumans(),
+            'created_at' => $this->created_at ? $this->created_at->format('Y-m-d H:i:s') : null,
 
             'imageType' => new ImageTypeResource($this->whenLoaded('imageType')),
         ];

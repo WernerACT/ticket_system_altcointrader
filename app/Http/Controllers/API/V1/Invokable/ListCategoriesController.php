@@ -22,9 +22,18 @@ class ListCategoriesController extends Controller
 
         // Handle the case where all departments are selected (departmentId = 0)
         if ($departmentId == 0) {
-            $categoriesQuery = Category::with('tickets')->withCount(['tickets' => function ($query) use ($startDate, $endDate, $allTickets, $user) {
+            $categoriesQuery = Category::with('tickets')->withCount(['tickets' => function ($query) use ($startDate, $endDate, $departmentId, $statusId, $allTickets, $user) {
                 // Filter tickets by the created_at date range
                 $query->whereBetween('created_at', [$startDate, $endDate]);
+                if ($statusId)
+                {
+                    if ($departmentId)
+                    {
+                        $query->where('department_id', $departmentId);
+                    }
+
+                    $query->where('status_id', $statusId);
+                }
 
                 // If $allTickets is 0, limit ticket count to those where tickets belong to the authenticated user
                 if ($allTickets == 0 && $user) {
@@ -33,9 +42,19 @@ class ListCategoriesController extends Controller
             }]);
         } else {
             $department = Department::findOrFail($departmentId);
-            $categoriesQuery = $department->categories()->with('tickets')->withCount(['tickets' => function ($query) use ($startDate, $endDate, $allTickets, $user) {
+            $categoriesQuery = $department->categories()->with('tickets')->withCount(['tickets' => function ($query) use ($startDate, $endDate, $departmentId, $statusId, $allTickets, $user) {
                 // Filter tickets by the created_at date range
                 $query->whereBetween('created_at', [$startDate, $endDate]);
+
+                if ($departmentId !== 0)
+                {
+                    $query->where('department_id', $departmentId);
+                }
+
+                if ($statusId !== 0)
+                {
+                    $query->where('status_id', $statusId);
+                }
 
                 // If $allTickets is 0, limit ticket count to those where tickets belong to the authenticated user
                 if ($allTickets == 0 && $user) {
@@ -46,9 +65,14 @@ class ListCategoriesController extends Controller
 
         // Handle the case where all statuses are selected (statusId = 0)
         if ($statusId && $statusId != 0) {
-            $categoriesQuery->whereHas('tickets', function ($query) use ($statusId, $startDate, $endDate) {
+            $categoriesQuery->whereHas('tickets', function ($query) use ($departmentId, $statusId, $startDate, $endDate) {
                 $query->where('status_id', $statusId)
                     ->whereBetween('created_at', [$startDate, $endDate]);
+
+                if ($departmentId !== 0)
+                {
+                    $query->where('department_id', $departmentId);
+                }
             });
         }
 

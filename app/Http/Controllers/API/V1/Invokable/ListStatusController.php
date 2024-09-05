@@ -19,22 +19,19 @@ class ListStatusController extends Controller
         $allTickets = $request->all_tickets;
         $user = Auth::user();
 
-        if ($departmentId == 0) {
-            // If department is 0, get statuses across all departments
-            $statusesQuery = Status::withCount(['tickets' => function ($query) use ($startDate, $endDate, $allTickets, $user) {
-                // Filter tickets by the created_at date range
-                $query->whereBetween('created_at', [$startDate, $endDate]);
+        // Base query to get all statuses and count tickets created within the date range
+        $statusesQuery = Status::withCount(['tickets' => function ($query) use ($startDate, $endDate, $allTickets, $user, $departmentId) {
+            $query->whereBetween('created_at', [$startDate, $endDate]);
+            if ($departmentId)
+            {
+                $query->where('department_id', $departmentId);
+            }
 
-                // If $allTickets is 0, limit ticket count to those where tickets belong to the authenticated user
-                if ($allTickets == 0 && $user) {
-                    $query->where('user_id', $user->id);
-                }
-            }]);
-        } else {
-            // Otherwise, get statuses for the specific department
-            $department = Department::findOrFail($departmentId);
-            $statusesQuery = $department->statuses($startDate, $endDate, $allTickets, $user ? $user->id : null);
-        }
+            // If $allTickets is 0, limit the ticket count to those where tickets belong to the authenticated user
+            if ($allTickets == 0 && $user) {
+                $query->where('user_id', $user->id);
+            }
+        }]);
 
         $statuses = $statusesQuery->get();
 
@@ -44,4 +41,3 @@ class ListStatusController extends Controller
         ]);
     }
 }
-

@@ -65,9 +65,13 @@ class TicketDetailController extends Controller
             return $status->id === $ticket->status->id;
         });
 
-        $categories = Category::all()->where('department_id', '=', $ticket->department_id);
+        $categories = Category::where('department_id', $ticket->department_id)
+            ->orderBy('name', 'asc')
+            ->get();
 
-        $cannedResponses = CannedResponse::all()->where('department_id', '=', $ticket->department_id);
+        $cannedResponses = CannedResponse::where('department_id', $ticket->department_id)
+            ->orderBy('name', 'asc')
+            ->get();
 
         return response()->json([
             'success' => true,

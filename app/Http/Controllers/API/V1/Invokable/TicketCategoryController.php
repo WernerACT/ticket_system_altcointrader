@@ -17,7 +17,9 @@ class TicketCategoryController extends Controller
      */
     public function __invoke(Request $request, Ticket $ticket)
     {
-        $categories = Category::where('department_id', '=', $ticket->department_id)->get();
+        $categories = Category::where('department_id', $ticket->department_id)
+            ->orderBy('name', 'asc')
+            ->get();
 
         return response()->json([
             'success' => true,

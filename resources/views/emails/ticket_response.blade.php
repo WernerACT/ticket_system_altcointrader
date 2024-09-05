@@ -2,7 +2,6 @@
 
 @section('content')
     <div align="center">
-
         <table class="MsoNormalTable" style="width: 550.0pt;" border="0" width="100%" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
@@ -23,5 +22,4 @@
             </tbody>
         </table>
     </div>
-
 @endsection

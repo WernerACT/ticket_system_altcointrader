@@ -36,7 +36,7 @@ class Ticket extends Model
         });
 
         static::updating(function ($ticket) {
-            if ($ticket->isDirty('department_id')) {
+            if ($ticket->isDirty('department_id') && !$ticket->isDirty('user_id')) {
                 $newDepartment = Department::find($ticket->department_id);
                 if ($newDepartment) {
                     $ticketAssignmentService = new TicketAssignmentService();
