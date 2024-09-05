@@ -135,8 +135,6 @@ class NavigateTicketsController extends Controller
             }
         }
 
-        dump($ticketIds, $currentTicketIndex, $nextTicketID);
-
         return response()->json([
             'success' => true,
             'ids' => $ticketIds,
