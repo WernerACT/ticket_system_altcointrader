@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Str;
@@ -28,6 +29,7 @@ class TicketResource extends JsonResource
             'user' => new UserResource($this->whenLoaded('user')),
             'notes_count' => $this->notes()->count(),
             'uploads_count' => $this->images()->count() + $this->documents()->count(),
+            'related_ticket_count' => Ticket::whereEmail($this->email)->count(),
             'responses' => ResponseResource::collection($this->whenLoaded('responses')),
         ];
     }

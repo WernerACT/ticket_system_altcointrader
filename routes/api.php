@@ -17,6 +17,7 @@ use App\Http\Controllers\API\V1\Invokable\ListStatusController;
 use App\Http\Controllers\API\V1\Invokable\ListTicketNotes;
 use App\Http\Controllers\API\V1\Invokable\ListTicketResponses;
 use App\Http\Controllers\API\V1\Invokable\NavigateTicketsController;
+use App\Http\Controllers\API\V1\Invokable\RelatedTicketController;
 use App\Http\Controllers\API\V1\Invokable\TicketCategoryController;
 use App\Http\Controllers\API\V1\Invokable\TicketDepartmentController;
 use App\Http\Controllers\API\V1\Invokable\TicketDetailController;
@@ -58,6 +59,7 @@ Route::prefix('/v1')
         Route::get('/list/responses/{ticket}', ListTicketResponses::class);
         Route::get('/list/notes/{ticket}', ListTicketNotes::class);
         Route::get('/list/departments/{ticket}', TicketDepartmentController::class);
+        Route::get('/related/ticket/{ticket}', RelatedTicketController::class);
         Route::post('/load/departments', ListDepartmentsController::class);
         Route::post('/load/statuses', ListStatusController::class);
         Route::post('/load/categories', ListCategoriesController::class);
