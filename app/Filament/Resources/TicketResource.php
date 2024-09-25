@@ -8,6 +8,7 @@ use App\Models\Department;
 use App\Models\Status;
 use App\Models\Ticket;
 use App\Models\User;
+use App\Services\TicketHistoryService;
 use Filament\Forms;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
@@ -21,6 +22,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class TicketResource extends Resource
 {
@@ -46,11 +48,53 @@ class TicketResource extends Resource
                     ->required()->autosize(),
                 DateTimePicker::make('opened_at'),
                 Select::make('department_id')
-                    ->relationship('department', 'name')->required(),
+                    ->relationship('department', 'name')
+                    ->required()
+                    ->afterStateUpdated(function ($state, $old, $livewire) {
+                        if ($state !== $old) {
+                            $departmentOld = Department::find($old)->name ?? 'Unknown';
+                            $departmentNew = Department::find($state)->name ?? 'Unknown';
+                            $adminName = Auth::user()->name;
+
+                            // Access the record from the Livewire component
+                            $ticket = $livewire->record;
+                            $comment = "Admin Update, the ticket's department was changed from {$departmentOld} to {$departmentNew} by {$adminName}.";
+
+                            app(TicketHistoryService::class)->recordHistory($ticket->id, $comment);
+                        }
+                    }),
                 Select::make('status_id')
-                    ->relationship('status', 'name')->required(),
+                    ->relationship('status', 'name')
+                    ->required()
+                    ->afterStateUpdated(function ($state, $old, $livewire) {
+                        if ($state !== $old) {
+                            $statusOld = Status::find($old)->name ?? 'Unknown';
+                            $statusNew = Status::find($state)->name ?? 'Unknown';
+                            $adminName = Auth::user()->name;
+
+                            // Access the record from the Livewire component
+                            $ticket = $livewire->record;
+                            $comment = "Admin Update, the ticket's status was changed from {$statusOld} to {$statusNew} by {$adminName}.";
+
+                            app(TicketHistoryService::class)->recordHistory($ticket->id, $comment);
+                        }
+                    }),
                 Select::make('user_id')
-                    ->relationship('user', 'name')->required(),
+                    ->relationship('user', 'name')
+                    ->required()
+                    ->afterStateUpdated(function ($state, $old, $livewire) {
+                        if ($state !== $old) {
+                            $userOld = User::find($old)->name ?? 'Unknown';
+                            $userNew = User::find($state)->name ?? 'Unknown';
+                            $adminName = Auth::user()->name;
+
+                            // Access the record from the Livewire component
+                            $ticket = $livewire->record;
+                            $comment = "Admin Update, the ticket's assigned user was changed from {$userOld} to {$userNew} by {$adminName}.";
+
+                            app(TicketHistoryService::class)->recordHistory($ticket->id, $comment);
+                        }
+                    }),
                 Select::make('category_id')
                     ->relationship('category', 'name')->required(),
             ]);
@@ -68,15 +112,38 @@ class TicketResource extends Resource
                 SelectColumn::make('department_id')
                     ->label('Department')
                     ->options(Department::all()->pluck('name', 'id')->toArray())
-                    ->sortable()->searchable(),
+                    ->sortable()->searchable()
+                    ->beforeStateUpdated(function ($record, $state) {
+                        $departmentOld = Department::find($record->department_id)->name ?? 'Unknown';
+                        $departmentNew = Department::find($state)->name ?? 'Unknown';
+                        $adminName = Auth::user()->name;
+                        $comment = "Admin Update, the ticket's department was changed from {$departmentOld} to {$departmentNew} by {$adminName}.";
+                        app(TicketHistoryService::class)->recordHistory($record->id, $comment);
+                    }),
+
                 SelectColumn::make('status_id')
                     ->label('Status')
                     ->options(Status::all()->pluck('name', 'id')->toArray())
-                    ->sortable()->searchable(),
+                    ->sortable()->searchable()
+                    ->beforeStateUpdated(function ($record, $state) {
+                        $statusOld = Status::find($record->status_id)->name ?? 'Unknown';
+                        $statusNew = Status::find($state)->name ?? 'Unknown';
+                        $adminName = Auth::user()->name;
+                        $comment = "Admin Update, the ticket's status was changed from {$statusOld} to {$statusNew} by {$adminName}.";
+                        app(TicketHistoryService::class)->recordHistory($record->id, $comment);
+                    }),
+
                 SelectColumn::make('user_id')
                     ->label('Assigned To')
                     ->options(User::all()->pluck('name', 'id')->toArray())
-                    ->sortable()->searchable(),
+                    ->sortable()->searchable()
+                    ->beforeStateUpdated(function ($record, $state) {
+                        $userOld = User::find($record->user_id)->name ?? 'Unknown';
+                        $userNew = User::find($state)->name ?? 'Unknown';
+                        $adminName = Auth::user()->name;
+                        $comment = "Admin Update, the ticket's assigned user was changed from {$userOld} to {$userNew} by {$adminName}.";
+                        app(TicketHistoryService::class)->recordHistory($record->id, $comment);
+                    }),
             ])
             ->filters([
                 SelectFilter::make('status')

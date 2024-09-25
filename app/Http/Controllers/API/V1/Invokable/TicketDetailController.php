@@ -32,18 +32,6 @@ class TicketDetailController extends Controller
         app(TicketHistoryService::class)
             ->recordHistory($ticket->id, $comment);
 
-        if ($user && $user->role_id === 3 && $user->department_id === $ticket->department_id) {
-            $ticket->update([
-                'user_id' => $user->id
-            ]);
-
-            $comment = "The ticket was automatically assigned to " . $user->name;
-
-            app(TicketHistoryService::class)
-                ->recordHistory($ticket->id, $comment);
-
-        }
-
         if ($ticket->status_id === 1) {
             $ticket->update([
                 'status_id' => 2,
