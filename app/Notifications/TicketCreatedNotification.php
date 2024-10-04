@@ -48,7 +48,7 @@ class TicketCreatedNotification extends Notification
         // Start building the email message
         $mailMessage = (new MailMessage)
             ->from($departmentFrom['email'], $departmentFrom['name']) // Use both email and name
-            ->subject($actTicketId . ' Created | AltCoinTrader Support Ticket')
+            ->subject($actTicketId . ' Created | AltCoinTrader ' . $ticket->department->name . 'Ticket')
             ->view('emails.ticket_created', ['ticket' => $ticket, 'actTicketId' => $actTicketId]);
 
         // If cc is not null, add cc recipients

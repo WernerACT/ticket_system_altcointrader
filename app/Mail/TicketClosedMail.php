@@ -35,7 +35,7 @@ class TicketClosedMail extends Mailable
 
         // Build the email with dynamic from name and email
         return $this->from($departmentFrom['email'], $departmentFrom['name'])  // Set both email and name dynamically
-        ->subject("{$this->ticket->reference} Closed | AltCoinTrader Support")
+        ->subject("{$this->ticket->reference} Closed | AltCoinTrader " . $this->ticket->department->name)
             ->view('emails.ticket_closed');
     }
 
