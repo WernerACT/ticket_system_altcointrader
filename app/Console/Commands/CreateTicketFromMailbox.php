@@ -3,46 +3,35 @@
 namespace App\Console\Commands;
 
 use App\Jobs\ProcessEmailIntoTicket;
-use Exception;
-use Illuminate\Console\Command;
-use Illuminate\Contracts\Console\Isolatable;
 use App\Services\MailboxService;
+use Illuminate\Console\Command;
 
-
-class CreateTicketFromMailbox extends Command implements Isolatable
-{
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
+class CreateTicketFromMailbox extends Command {
     protected $signature = 'import:email';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Command to retrieve messages from the mailbox and create tickets from the content.';
 
-    /**
-     * Execute the console command.
-     */
-    public function handle(MailboxService $mailboxService): void
-    {
+    public function handle(): void {
+        $mailboxes = ['support', 'audits', 'fraud'];
+
+        foreach ($mailboxes as $mailbox) {
+            $this->processMailbox($mailbox);
+        }
+    }
+
+    protected function processMailbox(string $mailbox): void {
         try {
+            $mailboxService = new MailboxService($mailbox);
             $messages = $mailboxService->getUnreadMessages();
 
             foreach ($messages as $message) {
-
                 $rawBody = $this->handleFormatFlowed($message->getRawBody());
-
                 $attachments = $message->getAttachments()->toArray();
 
-                // Proceed with normal processing if no large attachments are found
                 $email = [
                     'subject' => $message->getSubject()->toString(),
+                    'department' => $mailbox,
                     'from' => $message->getFrom()[0]->mail,
+                    'cc' => $message->getCc(),
                     'body' => $rawBody,
                     'html' => $message->getHTMLBody(),
                     'date' => $message->getDate()->toDate(),
@@ -58,21 +47,21 @@ class CreateTicketFromMailbox extends Command implements Isolatable
                 ];
 
                 ProcessEmailIntoTicket::dispatch($email);
+                $mailboxService->markAsRead($message->getUid());
             }
-        } catch (Exception $e) {
-            $this->error("An error occurred: " . $e->getMessage());
+
+            $mailboxService->disconnect();
+
+        } catch (\Exception $e) {
+            $this->error("An error occurred while processing the mailbox '$mailbox': " . $e->getMessage());
         }
     }
 
-    protected function handleFormatFlowed(string $text): string
-    {
-        // Replace soft line breaks (which are indicated by a newline followed by a space)
+    protected function handleFormatFlowed(string $text): string {
         $text = preg_replace('/(?<!\r\n)\r\n(?!\r\n)/', '', $text);
-
-        // Also handle any other cases of soft breaks followed by a space
         $text = preg_replace('/\n /', '', $text);
 
         return $text;
     }
-
 }
+

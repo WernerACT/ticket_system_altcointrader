@@ -45,47 +45,54 @@ return [
     |
     */
     'accounts' => [
-
-        'default' => [// account identifier
+        'support' => [
             'host'  => env('IMAP_HOST', 'localhost'),
             'port'  => env('IMAP_PORT', 993),
             'protocol'  => env('IMAP_PROTOCOL', 'imap'), //might also use imap, [pop3 or nntp (untested)]
             'encryption'    => env('IMAP_ENCRYPTION', 'ssl'), // Supported: false, 'ssl', 'tls', 'notls', 'starttls'
             'validate_cert' => env('IMAP_VALIDATE_CERT', true),
-            'username' => env('IMAP_USERNAME', 'root@example.com'),
-            'password' => env('IMAP_PASSWORD', ''),
+            'username' => env('SUPPORT_IMAP_USERNAME', 'support@altcointrader.co.za'),
+            'password' => env('SUPPORT_IMAP_PASSWORD', ''),
             'authentication' => env('IMAP_AUTHENTICATION', null),
-            'proxy' => [
-                'socket' => null,
-                'request_fulluri' => false,
-                'username' => null,
-                'password' => null,
-            ],
-            "timeout" => 30,
+            "timeout" => 45,
             "extensions" => []
         ],
-
-        /*
-        'gmail' => [ // account identifier
-            'host' => 'imap.gmail.com',
-            'port' => 993,
-            'encryption' => 'ssl',
-            'validate_cert' => true,
-            'username' => 'example@gmail.com',
-            'password' => 'PASSWORD',
-            'authentication' => 'oauth',
+        'audits' => [
+            'host'  => env('IMAP_HOST', 'localhost'),
+            'port'  => env('IMAP_PORT', 993),
+            'protocol'  => env('IMAP_PROTOCOL', 'imap'), //might also use imap, [pop3 or nntp (untested)]
+            'encryption'    => env('IMAP_ENCRYPTION', 'ssl'), // Supported: false, 'ssl', 'tls', 'notls', 'starttls'
+            'validate_cert' => env('IMAP_VALIDATE_CERT', true),
+            'username' => env('AUDITS_IMAP_USERNAME', 'fraud@altcointrader.co.za'),
+            'password' => env('AUDITS_IMAP_PASSWORD', ''),
+            'authentication' => env('IMAP_AUTHENTICATION', null),
+            "timeout" => 45,
+            "extensions" => []
         ],
-
-        'another' => [ // account identifier
-            'host' => '',
-            'port' => 993,
-            'encryption' => false,
-            'validate_cert' => true,
-            'username' => '',
-            'password' => '',
-            'authentication' => null,
-        ]
-        */
+        'fraud' => [
+            'host'  => env('IMAP_HOST', 'localhost'),
+            'port'  => env('IMAP_PORT', 993),
+            'protocol'  => env('IMAP_PROTOCOL', 'imap'), //might also use imap, [pop3 or nntp (untested)]
+            'encryption'    => env('IMAP_ENCRYPTION', 'ssl'), // Supported: false, 'ssl', 'tls', 'notls', 'starttls'
+            'validate_cert' => env('IMAP_VALIDATE_CERT', true),
+            'username' => env('FRAUD_IMAP_USERNAME', 'fraud@altcointrader.co.za'),
+            'password' => env('FRAUD_IMAP_PASSWORD', ''),
+            'authentication' => env('IMAP_AUTHENTICATION', null),
+            "timeout" => 45,
+            "extensions" => []
+        ],
+        'metals' => [
+            'host'  => env('IMAP_HOST', 'localhost'),
+            'port'  => env('IMAP_PORT', 993),
+            'protocol'  => env('IMAP_PROTOCOL', 'imap'), //might also use imap, [pop3 or nntp (untested)]
+            'encryption'    => env('IMAP_ENCRYPTION', 'ssl'), // Supported: false, 'ssl', 'tls', 'notls', 'starttls'
+            'validate_cert' => env('IMAP_VALIDATE_CERT', true),
+            'username' => env('METALS_IMAP_USERNAME', 'metals@altcointrader.co.za'),
+            'password' => env('METALS_IMAP_PASSWORD', ''),
+            'authentication' => env('IMAP_AUTHENTICATION', null),
+            "timeout" => 45,
+            "extensions" => []
+        ],
     ],
 
     /*
@@ -143,7 +150,7 @@ return [
     */
     'options' => [
         'delimiter' => '/',
-        'fetch' => \Webklex\PHPIMAP\IMAP::FT_PEEK,
+        'fetch' => \Webklex\PHPIMAP\IMAP::FT_UID,
         'sequence' => \Webklex\PHPIMAP\IMAP::ST_UID,
         'fetch_body' => true,
         'fetch_flags' => true,

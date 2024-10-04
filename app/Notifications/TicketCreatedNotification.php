@@ -42,9 +42,22 @@ class TicketCreatedNotification extends Notification
         $ticket = Ticket::findOrFail($this->ticketId);
         $actTicketId = $ticket->reference;
 
-        return (new MailMessage)
+        // Determine the from email based on the department name
+        $departmentFromEmail = $this->getDepartmentFromEmail($ticket->department->name);
+
+        // Start building the email message
+        $mailMessage = (new MailMessage)
+            ->from($departmentFromEmail)
             ->subject($actTicketId . ' Created | AltCoinTrader Support Ticket')
             ->view('emails.ticket_created', ['ticket' => $ticket, 'actTicketId' => $actTicketId]);
+
+        // If cc is not null, add cc recipients
+        if (!empty($ticket->cc)) {
+            $ccEmails = is_array($ticket->cc) ? $ticket->cc : json_decode($ticket->cc, true);  // Assuming it's stored as a JSON array
+            $mailMessage->cc($ccEmails);
+        }
+
+        return $mailMessage;
     }
 
     /**
@@ -58,5 +71,19 @@ class TicketCreatedNotification extends Notification
     {
         // Handle failure (e.g., log it or alert an administrator)
         Log::error("Failed to send notification: " . $exception->getMessage());
+    }
+
+    protected function getDepartmentFromEmail(string $departmentName): string
+    {
+        // Map department names to email addresses
+        $fromEmails = [
+            'Fraud' => 'fraud@altcointrader.co.za',
+            'Support' => 'support@altcointrader.co.za',
+            'Audit' => 'audits@altcointrader.co.za',
+            'Metals' => 'metals@altcointrader.co.za',
+        ];
+
+        // Return the matched email or default to 'support@altcointrader.co.za'
+        return $fromEmails[$departmentName] ?? 'support@altcointrader.co.za';
     }
 }

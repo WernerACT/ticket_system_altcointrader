@@ -6,6 +6,7 @@ use App\Filament\Resources\ResponseResource\Pages;
 use App\Filament\Resources\ResponseResource\RelationManagers;
 use App\Models\Response;
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -32,6 +33,7 @@ class ResponseResource extends Resource
                 Forms\Components\Select::make('ticket_id')->relationship('ticket', 'reference'),
                 Forms\Components\Select::make('user_id')->relationship('user', 'name'),
                 Forms\Components\Textarea::make('body')->autosize(),
+                TextInput::make('email')->label('From')->email()->required(),
                 Forms\Components\DateTimePicker::make('created_at'),
             ]);
     }
@@ -42,6 +44,7 @@ class ResponseResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('ticket.reference')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('body')->sortable()->limit(50)->searchable(),
+                Tables\Columns\TextColumn::make('email')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('created_at')->sortable()->dateTime()->searchable(),
                 Tables\Columns\TextColumn::make('created_at')->sortable()->dateTime()->searchable(),
                 Tables\Columns\TextColumn::make('user.name')->searchable()->sortable(),

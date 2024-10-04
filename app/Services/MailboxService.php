@@ -26,8 +26,8 @@ class MailboxService {
      * @throws ImapServerErrorException
      * @throws AuthFailedException
      */
-    public function __construct() {
-        $this->client = IMAPClient::account('default');
+    public function __construct(string $mailbox = 'support') {
+        $this->client = IMAPClient::account($mailbox);
         $this->client->connect();
     }
 
@@ -55,9 +55,7 @@ class MailboxService {
      * @throws ImapServerErrorException
      * @throws AuthFailedException
      */
-    public function markAsRead($messageId): void
-    {
-
+    public function markAsRead($messageId): void {
         $folder = $this->client->getFolder('INBOX');
         $messages = $folder->query()->uid($messageId)->get();
 
@@ -69,12 +67,24 @@ class MailboxService {
         $message = $messages->first();
         if ($message) {
             $message->setFlag('Seen');
+            Log::info("Message with ID $messageId has been marked as read.");
+        } else {
+            Log::warning("Failed to mark message with ID $messageId as read.");
         }
     }
 
     public function getAttachments($message)
     {
         return $message->getAttachments();
+    }
+
+    /**
+     * @throws ImapBadRequestException
+     * @throws RuntimeException
+     * @throws ImapServerErrorException
+     */
+    public function disconnect(): void {
+        $this->client->disconnect();
     }
 }
 

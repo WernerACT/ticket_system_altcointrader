@@ -24,6 +24,7 @@ class Ticket extends Model
         'department_id',
         'status_id',
         'user_id',
+        'cc'
     ];
 
     protected static function booted(): void
@@ -121,6 +122,7 @@ class Ticket extends Model
     protected $casts = [
         'opened_at' => 'datetime',
         'created_at' => 'datetime',
-        'updated_at' => 'datetime'
+        'updated_at' => 'datetime',
+        'cc' => 'array'
     ];
 }

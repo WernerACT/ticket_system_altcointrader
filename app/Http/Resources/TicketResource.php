@@ -17,7 +17,7 @@ class TicketResource extends JsonResource
             'id' => $this->id,
             'email' => $this->email,
             'reference' => $this->reference,
-            'title' => Str::limit($this->title, 35),
+            'title' => $this->title,
             'description' => $this->description,
 //            'tickets' => TicketResource::collection($this->whenLoaded('tickets')),
             'opened_at' => $this->opened_at ? $this->opened_at->format('Y-m-d H:i:s') : null,

@@ -44,7 +44,11 @@ class ProcessEmailIntoTicket implements ShouldQueue
         $attachmentService = app(AttachmentService::class);
         $responseService = app(ResponseService::class);
         $mailboxService = app(MailboxService::class);
-        $department = Department::findOrFail(1);
+        $department = Department::where('name', ucfirst($this->email['department']))->first();
+
+        if (!$department) {
+            $department = Department::where('name', 'Support')->firstOrFail();  // Fallback to 'Support'
+        }
 
         try {
             DB::transaction(function () use ($ticketService, $assignmentService, $validationService, $attachmentService, $responseService, $mailboxService, $department, &$ticket) {
@@ -56,9 +60,21 @@ class ProcessEmailIntoTicket implements ShouldQueue
                 // Clean up the HTML body by removing unnecessary tags and extracting text content
                 $cleanHtmlBody = $this->cleanHtmlBody($this->processCidAttachments($attachmentService));
 
+                dump($this->email['cc']);
+
+                $ccEmails = [];
+                if (isset($this->email['cc']) && is_object($this->email['cc'])) {
+                    foreach ($this->email['cc'] as $ccAddress) {
+                        if (isset($ccAddress->mail)) {
+                            $ccEmails[] = $ccAddress->mail;  // Extract the email address
+                        }
+                    }
+                }
+
                 $data = [
                     'title' => $this->email['subject'] ?? 'No Subject Provided',
                     'email' => $this->email['from'],
+                    'cc' => $ccEmails,
                     'description' => $cleanHtmlBody ?? 'The message received does not contain any content in the body of the message',
                     'department_id' => $department->id,
                     'status_id' => 1,

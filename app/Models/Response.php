@@ -13,6 +13,7 @@ class Response extends Model
     protected $fillable = [
         'body',
         'user_id',
+        'email',
         'ticket_id'
     ];
 

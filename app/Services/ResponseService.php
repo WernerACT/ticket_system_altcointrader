@@ -14,9 +14,10 @@ class ResponseService
         $response = new Response([
             'ticket_id' => $ticket->id,
             'body' => $body,
+            'email' => $data['email'],
         ]);
 
-        $comment = "The client sent a response";
+        $comment = "The client sent a response from " . $data['email'];
 
         app(TicketHistoryService::class)
             ->recordHistory($ticket->id, $comment);
