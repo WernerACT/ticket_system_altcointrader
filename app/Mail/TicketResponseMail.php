@@ -36,11 +36,11 @@ class TicketResponseMail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        // Determine the from email based on the department name
-        $fromEmail = $this->getDepartmentFromEmail($this->ticket->department->name);
+        // Get department email and name
+        $departmentFrom = $this->getDepartmentFromEmail($this->ticket->department->name);
 
         // Start building the email message
-        $mail = $this->from($fromEmail)  // Set the dynamic from address
+        $mail = $this->from($departmentFrom['email'], $departmentFrom['name'])  // Set both email and name dynamically
         ->subject("{$this->ticket->reference} Response | AltCoinTrader Support")
             ->view('emails.ticket_response');
 
@@ -54,22 +54,22 @@ class TicketResponseMail extends Mailable implements ShouldQueue
     }
 
     /**
-     * Determine the from email based on department name.
+     * Determine the from email and name based on department name.
      *
      * @param string $departmentName
-     * @return string
+     * @return array
      */
-    protected function getDepartmentFromEmail(string $departmentName): string
+    protected function getDepartmentFromEmail(string $departmentName): array
     {
-        // Map department names to email addresses
+        // Map department names to email addresses and display names
         $fromEmails = [
-            'Fraud' => 'fraud@altcointrader.co.za',
-            'Support' => 'support@altcointrader.co.za',
-            'Audit' => 'audits@altcointrader.co.za',
-            'Metals' => 'metals@altcointrader.co.za',
+            'Fraud' => ['email' => 'fraud@altcointrader.co.za', 'name' => 'AltCoinTrader Fraud'],
+            'Support' => ['email' => 'support@altcointrader.co.za', 'name' => 'AltCoinTrader Support'],
+            'Audit' => ['email' => 'audits@altcointrader.co.za', 'name' => 'AltCoinTrader Audits'],
+            'Metals' => ['email' => 'metals@altcointrader.co.za', 'name' => 'AltCoinTrader Metals'],
         ];
 
-        // Return the matched email or default to 'support@altcointrader.co.za'
-        return $fromEmails[$departmentName] ?? 'support@altcointrader.co.za';
+        // Return the matched email and name or default to 'AltCoinTrader Support'
+        return $fromEmails[$departmentName] ?? ['email' => 'support@altcointrader.co.za', 'name' => 'AltCoinTrader Support'];
     }
 }

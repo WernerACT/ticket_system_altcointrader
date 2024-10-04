@@ -42,12 +42,12 @@ class TicketCreatedNotification extends Notification
         $ticket = Ticket::findOrFail($this->ticketId);
         $actTicketId = $ticket->reference;
 
-        // Determine the from email based on the department name
-        $departmentFromEmail = $this->getDepartmentFromEmail($ticket->department->name);
+        // Get department email and name
+        $departmentFrom = $this->getDepartmentFromEmail($ticket->department->name);
 
         // Start building the email message
         $mailMessage = (new MailMessage)
-            ->from($departmentFromEmail)
+            ->from($departmentFrom['email'], $departmentFrom['name']) // Use both email and name
             ->subject($actTicketId . ' Created | AltCoinTrader Support Ticket')
             ->view('emails.ticket_created', ['ticket' => $ticket, 'actTicketId' => $actTicketId]);
 
@@ -67,23 +67,29 @@ class TicketCreatedNotification extends Notification
      * @param  \Throwable  $exception
      * @return void
      */
-    public function failed($notifiable, Throwable $exception)
+    public function failed($notifiable, Throwable $exception): void
     {
         // Handle failure (e.g., log it or alert an administrator)
         Log::error("Failed to send notification: " . $exception->getMessage());
     }
 
-    protected function getDepartmentFromEmail(string $departmentName): string
+    /**
+     * Get department email and name based on the department name.
+     *
+     * @param  string  $departmentName
+     * @return array
+     */
+    protected function getDepartmentFromEmail(string $departmentName): array
     {
-        // Map department names to email addresses
+        // Map department names to email addresses and display names
         $fromEmails = [
-            'Fraud' => 'fraud@altcointrader.co.za',
-            'Support' => 'support@altcointrader.co.za',
-            'Audit' => 'audits@altcointrader.co.za',
-            'Metals' => 'metals@altcointrader.co.za',
+            'Fraud' => ['email' => 'fraud@altcointrader.co.za', 'name' => 'AltCoinTrader Fraud'],
+            'Support' => ['email' => 'support@altcointrader.co.za', 'name' => 'AltCoinTrader Support'],
+            'Audits' => ['email' => 'audits@altcointrader.co.za', 'name' => 'AltCoinTrader Audits'],
+            'Metals' => ['email' => 'metals@altcointrader.co.za', 'name' => 'AltCoinTrader Metals'],
         ];
 
-        // Return the matched email or default to 'support@altcointrader.co.za'
-        return $fromEmails[$departmentName] ?? 'support@altcointrader.co.za';
+        // Default to 'AltCoinTrader Support' if no department is matched
+        return $fromEmails[$departmentName] ?? ['email' => 'support@altcointrader.co.za', 'name' => 'AltCoinTrader Support'];
     }
 }
