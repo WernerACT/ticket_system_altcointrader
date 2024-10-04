@@ -40,7 +40,7 @@ class TicketResponseMail extends Mailable implements ShouldQueue
         $departmentFrom = $this->getDepartmentFromEmail($this->ticket->department->name);
 
         // Start building the email message
-        $mail = $this->from($departmentFrom['email'], $departmentFrom['name'])  // Set both email and name dynamically
+        $mail = $this->from($departmentFrom['email'], $departmentFrom['name'])
         ->subject("{$this->ticket->reference} Response | AltCoinTrader " . $this->ticket->department->name)
             ->view('emails.ticket_response');
 
