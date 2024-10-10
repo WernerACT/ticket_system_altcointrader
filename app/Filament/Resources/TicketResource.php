@@ -21,6 +21,7 @@ use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
 
@@ -159,7 +160,33 @@ class TicketResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                //
+                Tables\Actions\BulkAction::make('changeStatus')
+                    ->label('Change Status')
+                    ->form([
+                        Select::make('status_id')
+                            ->label('New Status')
+                            ->options(Status::all()->pluck('name', 'id')->toArray())
+                            ->required(),
+                    ])
+                    ->action(function (Collection $records, array $data) { // Use Collection instead of array
+                        $newStatusId = $data['status_id'];
+                        $newStatusName = Status::find($newStatusId)->name;
+
+                        $adminName = Auth::user()->name;
+
+                        $records->each(function ($record) use ($newStatusId, $newStatusName, $adminName) {
+                            $oldStatusId = $record->status_id;
+                            $oldStatusName = Status::find($oldStatusId)->name ?? 'Unknown';
+
+                            // Update the status
+                            $record->update(['status_id' => $newStatusId]);
+
+                            // Log the history change
+                            $comment = "Admin Update, the ticket's status was changed from {$oldStatusName} to {$newStatusName} by {$adminName}.";
+                            app(TicketHistoryService::class)->recordHistory($record->id, $comment);
+                        });
+                    })
+                    ->deselectRecordsAfterCompletion(),
             ]);
     }
 
