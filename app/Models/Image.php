@@ -8,7 +8,15 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Image extends Model
 {
-    protected $fillable = ['path', 'name', 'imageable_type', 'imageable_id', 'image_type_id', 'is_valid'];
+    protected $fillable = [
+        'path',
+        'name',
+        'imageable_type',
+        'imageable_id',
+        'image_type_id',
+        'is_valid', 'blob',
+        'is_backed_up',
+        'backed_up_at'];
 
     public function imageable(): MorphTo
     {
@@ -23,5 +31,7 @@ class Image extends Model
     protected $casts = [
         'is_valid' => 'boolean',
         'should_delete' => 'boolean',
+        'is_backed_up' => 'boolean',
+        'backed_up_at' => 'datetime',
     ];
 }
