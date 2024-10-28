@@ -60,8 +60,6 @@ class ProcessEmailIntoTicket implements ShouldQueue
                 // Clean up the HTML body by removing unnecessary tags and extracting text content
                 $cleanHtmlBody = $this->cleanHtmlBody($this->processCidAttachments($attachmentService));
 
-                dump($this->email['cc']);
-
                 $ccEmails = [];
                 if (isset($this->email['cc']) && is_object($this->email['cc'])) {
                     foreach ($this->email['cc'] as $ccAddress) {
