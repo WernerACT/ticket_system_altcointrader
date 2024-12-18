@@ -4,6 +4,8 @@
 /public/storage
 /storage/*.key
 /vendor
+spam_emails_report.json
+/config/sentry.php
 .env
 .env.backup
 .env.production
