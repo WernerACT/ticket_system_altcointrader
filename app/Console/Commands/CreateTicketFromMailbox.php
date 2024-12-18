@@ -11,7 +11,7 @@ class CreateTicketFromMailbox extends Command {
     protected $description = 'Command to retrieve messages from the mailbox and create tickets from the content.';
 
     public function handle(): void {
-        $mailboxes = ['support', 'audits', 'fraud', 'metals'];
+        $mailboxes = ['support', 'audits', 'fraud', 'metals', 'docs'];
 
         foreach ($mailboxes as $mailbox) {
             $this->processMailbox($mailbox);

@@ -44,10 +44,17 @@ class ProcessEmailIntoTicket implements ShouldQueue
         $attachmentService = app(AttachmentService::class);
         $responseService = app(ResponseService::class);
         $mailboxService = app(MailboxService::class);
-        $department = Department::where('name', ucfirst($this->email['department']))->first();
+        $departmentName = ucfirst($this->email['department']);
+
+        if ($departmentName === 'Docs') {
+            $departmentName = 'FICA';
+        }
+
+        $department = Department::where('name', $departmentName)->first();
 
         if (!$department) {
-            $department = Department::where('name', 'Support')->firstOrFail();  // Fallback to 'Support'
+            // Fallback to "Support"
+            $department = Department::where('name', 'Support')->firstOrFail();
         }
 
         try {
