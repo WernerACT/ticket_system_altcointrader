@@ -23,7 +23,7 @@ class TicketResource extends JsonResource
             'opened_at' => $this->opened_at ? $this->opened_at->format('Y-m-d H:i:s') : null,
             'updated_at' => $this->updated_at ? $this->updated_at->format('Y-m-d H:i:s') : null,
             'created_at' => $this->created_at ? $this->created_at->format('Y-m-d H:i:s') : null,
-            'category' => new CategoryResource($this->whenLoaded('category')),
+            'category' => $this->category ? $this->category->name : null,
             'department' => new DepartmentResource($this->whenLoaded('department')),
             'status' => new StatusResource($this->whenLoaded('status')),
             'user' => new UserResource($this->whenLoaded('user')),
