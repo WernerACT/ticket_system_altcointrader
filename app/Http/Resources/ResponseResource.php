@@ -17,10 +17,23 @@ class ResponseResource extends JsonResource
             'id' => $this->id,
             'body' => $this->body,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
-            'from' => $isUserResponse ? $this->user->name : $this->ticket->email, // Default to ticket email if no user
+            'from' => $this->resolveFromField(),
             'position' => $isUserResponse ? 'right' : 'left', // Position based on response origin
             'user' => new UserResource($userLoaded),
             'ticket' => new TicketResource($this->whenLoaded('ticket')),
         ];
+    }
+
+    private function resolveFromField(): string
+    {
+        if ($this->user_id !== null && $this->user) {
+            return $this->user->name;
+        }
+
+        if (!empty($this->email)) {
+            return $this->email;
+        }
+
+        return $this->ticket->email ?? 'Unknown';
     }
 }
